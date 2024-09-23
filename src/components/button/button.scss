@@ -1,0 +1,22 @@
+@import "../../theme/variables.scss";
+
+.button {
+  cursor: pointer;
+  border: none;
+}
+
+.button-primary {
+  background-color: $primary;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.button-secondary {
+  background-color: $white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
