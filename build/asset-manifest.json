@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/matrix-table/static/css/main.e6c13ad2.css",
+    "main.js": "/matrix-table/static/js/main.ec1acb68.js",
+    "static/js/453.888cdd2b.chunk.js": "/matrix-table/static/js/453.888cdd2b.chunk.js",
+    "index.html": "/matrix-table/index.html",
+    "main.e6c13ad2.css.map": "/matrix-table/static/css/main.e6c13ad2.css.map",
+    "main.ec1acb68.js.map": "/matrix-table/static/js/main.ec1acb68.js.map",
+    "453.888cdd2b.chunk.js.map": "/matrix-table/static/js/453.888cdd2b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.ec1acb68.js"
+  ]
+}
