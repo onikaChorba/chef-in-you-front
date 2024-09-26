@@ -6,14 +6,19 @@ export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async () =>
   return data;
 });
 
+export const fetchTags = createAsyncThunk('recipes/fetchTags', async () => {
+  const { data } = await axios.get('/recipes/tags');
+  return data;
+});
+
 const initialState = {
   recipes: {
     items: [],
     status: "loading",
   },
   tags: {
-    items: [],
-    status: "loading",
+    items: { tags: [] },
+    status: "succeeded",
   },
 };
 
@@ -32,6 +37,16 @@ const recipesSlice = createSlice({
       })
       .addCase(fetchRecipes.rejected, (state) => {
         state.recipes.status = 'failed';
+      })
+      .addCase(fetchTags.pending, (state) => {
+        state.tags.status = 'loading';
+      })
+      .addCase(fetchTags.fulfilled, (state, action) => {
+        state.tags.items = action.payload;
+        state.tags.status = 'succeeded';
+      })
+      .addCase(fetchTags.rejected, (state) => {
+        state.tags.status = 'failed';
       });
   },
 });
