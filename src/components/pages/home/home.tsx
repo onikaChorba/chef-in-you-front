@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes, fetchTags } from "../../../redux/slices/recipes.ts";
 import { AppDispatch, RootState } from "../../../redux/store.ts";
@@ -20,7 +21,9 @@ export const Home = () => {
       <h1>Recipes</h1>
       <ul>
         {recipes.items.map((recipe: any, index: number) => (
-          <li key={index}>{recipe._id}</li>
+          <li key={index}>{recipe._id}
+            <Link to={`/recipes/${recipe._id}`} >Link</Link>
+          </li>
         ))}
       </ul>
 

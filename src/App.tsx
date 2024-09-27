@@ -4,6 +4,7 @@ import { Header } from './components/header/header.tsx';
 import { Home } from './components/pages/home/home.tsx';
 import { Registration } from './components/form/registration/registration.tsx';
 import { Login } from './components/form/login/login.tsx';
+import { RecipeDetails } from './components/recipe/recipe.tsx';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/recipes' element={<>Recipes</>} />
         <Route path='/recipes/tags' element={<>tags</>} />
-        <Route path='/recipes/:id' element={<>Recipe Details</>} />
+        <Route path='/recipes/:id' element={<RecipeDetails />} />
         <Route path='/add-recipe' element={<>add-recipe</>} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
