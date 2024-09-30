@@ -25,6 +25,7 @@ export const RecipeDetails = () => {
         <div>
           <h1>{data.title}: {data._id}</h1>
           <p>{data.text}</p>
+          <button>Remove recipe</button>
         </div>
       ) : (
         <p>Loading...</p>

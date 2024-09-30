@@ -1,12 +1,15 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
-import { useDispatch } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../redux/store.ts";
-import { fetchLogin } from "../../../redux/slices/auth.ts";
+import { fetchLogin, selectIsAuth } from "../../../redux/slices/auth.ts";
 
 export const Login = () => {
 
+  const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch<AppDispatch>();
+
   const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
     defaultValues: {
       email: "onika164604@gmail.com",
@@ -15,8 +18,18 @@ export const Login = () => {
     mode: "onChange"
   });
 
-  const onSubmit = (values: { email: string; password: string }) => {
-    dispatch(fetchLogin(values));
+  const onSubmit = async (values: { email: string; password: string }) => {
+    const data = await dispatch(fetchLogin(values));
+    if (!data.payload) {
+      alert('Error login')
+    }
+    if ('token' in data.payload) {
+      window.localStorage.setItem('token', data.payload.token);
+    }
+  };
+
+  if (isAuth) {
+    return <Navigate to="/" />
   };
 
   return (
