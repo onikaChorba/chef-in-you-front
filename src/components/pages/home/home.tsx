@@ -8,8 +8,6 @@ export const Home = () => {
 
   const dispatch: AppDispatch = useDispatch();
   const { recipes, tags } = useSelector((state: RootState) => state.recipes);
-  console.log(recipes, "resipes");
-  console.log(tags.items, "tags");
 
   useEffect(() => {
     dispatch(fetchRecipes());

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { TRecipe } from "../../types/index.ts";
 import axios from '../../axios.ts';
 
 export const RecipeDetails = () => {
   const [data, setData] = useState<TRecipe | null>(null);
+  console.log(data)
+  const userData = useSelector((state: any) => state.auth.data);
   const { id } = useParams();
 
   useEffect(() => {
@@ -27,7 +30,7 @@ export const RecipeDetails = () => {
           <h1>{data.title}: {data._id}</h1>
           <p>{data.text}</p>
           <p>{data.user}</p>
-          <button>Remove recipe</button>
+          {(data.user === userData._id) && <button> Remove recipe</button>}
         </div>
       ) : (
         <p>Loading...</p>
