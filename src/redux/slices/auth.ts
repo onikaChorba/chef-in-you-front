@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../axios.ts";
 import { RootState } from "../store";
-
-interface LoginParams {
-  email: string;
-  password: string;
-}
+import { LoginParams, RegisterParams } from "../../types/index.ts";
 
 export const fetchLogin = createAsyncThunk('auth/fetchLogin', async (params: LoginParams) => {
   const { data } = await axios.post('/login', params);
+  return data;
+});
+
+export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (params: RegisterParams) => {
+  const { data } = await axios.post('/registration', params);
   return data;
 });
 
@@ -16,7 +17,6 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
   const { data } = await axios.get('/me');
   return data;
 });
-
 
 const initialState = {
   isAuth: false,
@@ -59,6 +59,20 @@ const authSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(fetchAuthMe.rejected, (state) => {
+        state.status = 'error';
+        state.data = null;
+      })
+
+      .addCase(fetchRegister.pending, (state) => {
+        state.status = 'loading';
+        state.data = null;
+      })
+      .addCase(fetchRegister.fulfilled, (state, action) => {
+        state.isAuth = true;
+        state.status = 'loaded';
+        state.data = action.payload;
+      })
+      .addCase(fetchRegister.rejected, (state) => {
         state.status = 'error';
         state.data = null;
       })
