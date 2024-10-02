@@ -1,6 +1,16 @@
 @import "variables.scss";
 @import "text.scss";
 
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1550px;
+  width: 100%;
+}
+
 span {
   color: $primary;
 }
