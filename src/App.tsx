@@ -8,13 +8,16 @@ import { Login } from './components/form/login/login.tsx';
 import { RecipeDetails } from './components/recipe/recipe.tsx';
 import { fetchAuthMe, selectIsAuth } from './redux/slices/auth.ts';
 import { AppDispatch } from './redux/store.ts';
+import { AddRecipe } from './components/pages/recipes/addRecipe.tsx';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+
   useEffect(() => {
-    dispatch(fetchAuthMe())
-  })
+    dispatch(fetchAuthMe());
+  });
+
   return (
     <>
       <Header />
@@ -24,9 +27,10 @@ function App() {
         <Route path='/recipes' element={<>Recipes</>} />
         <Route path='/recipes/tags' element={<>tags</>} />
         <Route path='/recipes/:id' element={<RecipeDetails />} />
-        <Route path='/add-recipe' element={<>add-recipe</>} />
+        <Route path='/add-recipe' element={<AddRecipe />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
+        <Route path='/me' element={<>me</>} />
         <Route path='/blog' element={<>blog</>} />
       </Routes>
     </>

@@ -1,0 +1,33 @@
+@import "../../index.scss";
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    color: $primary;
+    margin-bottom: 8px;
+  }
+
+  input {
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid $primary-grey;
+    border-radius: 4px;
+    color: $black;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    &:focus {
+      border-color: $primary;
+      background-color: $light-grey;
+    }
+
+    &::placeholder {
+      color: $mid-grey;
+      font-style: italic;
+    }
+  }
+}
