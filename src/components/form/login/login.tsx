@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../redux/store.ts";
 import { fetchLogin, selectIsAuth } from "../../../redux/slices/auth.ts";
+import { Input } from "../../input/input.tsx";
 
 export const Login = () => {
 
@@ -34,8 +35,8 @@ export const Login = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input placeholder="login" {...register('email', { required: 'Write email please' })} type="email" />{errors.email?.message}
-      <input placeholder="password" {...register('password', { required: 'Write password please' })} />{errors.password?.message}
+      <Input placeholder="login" {...register('email', { required: 'Write email please' })} type="email" />{errors.email?.message}
+      <Input placeholder="password" {...register('password', { required: 'Write password please' })} type="string" />{errors.password?.message}
       <button className='button' type='submit'>
         Login In
       </button>

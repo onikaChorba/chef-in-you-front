@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../redux/store.ts";
 import { fetchRegister, selectIsAuth } from "../../../redux/slices/auth.ts";
+import { Input } from "../../input/input.tsx";
 
 export const Registration = () => {
   const isAuth = useSelector(selectIsAuth);
@@ -23,11 +24,11 @@ export const Registration = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input placeholder="full name" {...register('fullName', { required: 'Write full name' })} type="text" />
+      <Input placeholder="full name" {...register('fullName', { required: 'Write full name' })} type="text" />
       {errors.fullName?.message}
-      <input placeholder="email" {...register('email', { required: 'Write email' })} type="email" />
+      <Input placeholder="email" {...register('email', { required: 'Write email' })} type="email" />
       {errors.email?.message}
-      <input placeholder="password" {...register('password', { required: 'Write password please' })} />
+      <Input placeholder="password" {...register('password', { required: 'Write password please' })} />
       {errors.password?.message}
       <button className='button' type='submit'>
         Sing Up

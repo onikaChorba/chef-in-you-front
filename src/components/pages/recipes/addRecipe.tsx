@@ -105,9 +105,8 @@ export const AddRecipe = () => {
           {ingredients.map((ingredient, index) => (
             <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div style={{ width: '100%' }} className="input-container">
-                <input
+                <Input
                   type="text"
-                  id={`ingredient-${index}`}
                   name={`ingredient-${index}`}
                   placeholder="Add ingredient"
                   value={ingredient.value || ""}
@@ -136,9 +135,8 @@ export const AddRecipe = () => {
             <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div style={{ width: '100%' }} className="input-container">
                 <label htmlFor={`instruction-${index}`}>Step {index + 1}:</label>
-                <input
+                <Input
                   type="text"
-                  id={`instruction-${index}`}
                   name={`instruction-${index}`}
                   placeholder="Write instruction"
                   value={instruction.value || ""}
@@ -161,7 +159,7 @@ export const AddRecipe = () => {
         <Input value={recipeTags}
           onChange={(e) => setRecipeTags(e.target.value)} name="recipe-tag" label="Tags" placeholder="Tags" type="text" />
 
-        <Button text="Create New Recipe" className="button-primary poppins-bold" onClick={handleSubmit} />
+        <Button text="Create New Recipe" textStyle="poppins-bold" className="button-primary" onClick={handleSubmit} />
       </div>
     </>
   )

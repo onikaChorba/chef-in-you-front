@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './header.scss';
+import styles from './header.module.scss';
 import logo from '../../assets/icons/logo.png';
 import { Button } from '../button/button.tsx';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,37 +18,38 @@ export const Header = () => {
   }
 
   return (
-    <header className='header'>
-      <div className='header__logo'>
+    <header className={styles.header}>
+      <div className={styles.header__logo}>
         <img src={logo} alt="logo" />
-        <p className='poppins-bold'>Chef in you</p>
+        <p className={styles['poppins-bold']}>Chef in you</p>
       </div>
-      <nav className='header__nav poppins-semibold'>
+      <nav className={`${styles.header__nav} ${styles['poppins-semibold']}`}>
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? 'active' : '')}>
+          className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
+        >
           Home
         </NavLink>
-        <NavLink to="/recipes">Recipes</NavLink>
+        <NavLink to="/recipes" className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>Recipes</NavLink>
         {
-          isAuth && <NavLink to="/add-recipe">Add Recipe</NavLink>
+          isAuth && <NavLink to="/add-recipe" className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>Add Recipe</NavLink>
         }
-        <NavLink to="/blog">Blog</NavLink>
+        <NavLink to="/blog" className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>Blog</NavLink>
       </nav>
       {
         !isAuth ?
-          <div className='header__buttons'>
-            <NavLink to="/login" className='link'>
+          <div className={styles['header__buttons']}>
+            <NavLink to="/login" className={styles.link}>
               <Button
                 text="Login in"
-                onClick={() => console.log(1)}
-                className="button-secondary poppins-bold" />
+                textStyle="poppins-bold"
+                className="button-secondary" />
             </NavLink>
-            <NavLink to="/registration" className='link'>
+            <NavLink to="/registration" className={styles.link}>
               <Button
                 text="Sing up"
-                onClick={() => console.log(2)}
-                className="button-primary poppins-bold" />
+                textStyle="poppins-bold"
+                className="button-primary" />
             </NavLink>
           </div>
           :
@@ -56,7 +57,8 @@ export const Header = () => {
             <Button
               text="Login out"
               onClick={() => onClickLogout()}
-              className="button-primary poppins-bold" />
+              textStyle="poppins-bold"
+              className="button-primary" />
           </div>
       }
     </header>

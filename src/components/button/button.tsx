@@ -1,10 +1,18 @@
 import React from "react"
-import './button.scss';
+import styles from './button.module.scss'
 
-export const Button = ({ text, onClick, className }) => {
+interface IButton {
+  text: string;
+  onClick?: () => void;
+  className: string;
+  textStyle: string;
+}
+
+export const Button: React.FC<IButton> = ({ text, onClick, className, textStyle }) => {
   return (
-    <button onClick={onClick} className={`button poppins-medium ${className}`}>
+    <button onClick={onClick} className={`${styles.button} ${textStyle} ${styles[className]}`}>
       {text}
     </button>
+
   )
 }
