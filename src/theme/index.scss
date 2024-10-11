@@ -1,17 +1,51 @@
 @import "mixin.scss";
-@import "variables.scss";
 @import "text.scss";
 
 #root {
   display: flex;
   justify-content: center;
+
+  --primary-dark: #9f5448;
+  --primary: #b55d51;
+  --primary-light: #fbc4be;
+  --black: #000000;
+  --white: #ffffff;
+  --primary-grey: #333;
+  --dark-gray: #555;
+  --mid-grey: #999999;
+  --light-grey: #f0f0f0;
 }
 
 .container {
   max-width: 1550px;
   width: 100%;
+  padding: 0 20px;
 }
 
 span {
-  color: $primary;
+  color: var(--primary);
+}
+
+@media (max-width: 1550px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
 }
