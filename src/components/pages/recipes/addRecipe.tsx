@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styles from './recipe.module.scss';
-import { selectIsAuth } from "../../../redux/slices/auth.ts";
-import { Input } from "../../input/input.tsx";
-import { Button } from "../../button/button.tsx";
+import { selectIsAuth } from "../../../redux/slices/auth";
+import { Input } from "../../input/input";
+import { Button } from "../../button/button";
 import AddRecipesImg from '../../../assets/imgs/addRecipes.jpg';
 import water from '../../../assets/icons/water.png';
 import cooking from '../../../assets/icons/cooking.png';
@@ -28,12 +28,12 @@ export const AddRecipe = () => {
     setIngredients([...ingredients, { value: "" }]);
   };
 
-  const removeIngredient = (index) => {
+  const removeIngredient = (index: number) => {
     const newIngredients = ingredients.filter((_, i) => i !== index);
     setIngredients(newIngredients);
   };
 
-  const handleChangeIngredient = (e, index) => {
+  const handleChangeIngredient = (e: any, index: number) => {
     const newIngredients = [...ingredients];
     newIngredients[index].value = e.target.value;
 
@@ -47,12 +47,12 @@ export const AddRecipe = () => {
     setInstructions([...instructions, { value: "" }]);
   };
 
-  const removeInstruction = (index) => {
+  const removeInstruction = (index: number) => {
     const newIngredients = instructions.filter((_, i) => i !== index);
     setInstructions(newIngredients);
   };
 
-  const handleChangeInstruction = (e, index) => {
+  const handleChangeInstruction = (e: any, index: number) => {
     const newIngredients = [...instructions];
     newIngredients[index].value = e.target.value;
 

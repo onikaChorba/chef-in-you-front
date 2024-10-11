@@ -2,9 +2,9 @@ import React from "react";
 import { useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../../redux/store.ts";
-import { fetchLogin, selectIsAuth } from "../../../redux/slices/auth.ts";
-import { Input } from "../../input/input.tsx";
+import { AppDispatch } from "../../../redux/store";
+import { fetchLogin, selectIsAuth } from "../../../redux/slices/auth";
+import { Input } from "../../input/input";
 
 export const Login = () => {
 
