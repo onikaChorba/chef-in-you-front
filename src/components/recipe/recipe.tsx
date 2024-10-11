@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { TRecipe } from "../../types/index.ts";
-import axios from '../../axios.ts';
+import { TRecipe } from "../../types/index";
+import axios from '../../axios';
 
 export const RecipeDetails = () => {
   const [data, setData] = useState<TRecipe | null>(null);

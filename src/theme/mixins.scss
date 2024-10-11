@@ -1,0 +1,30 @@
+@mixin flexCenter($gap: 20px) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+}
+
+@mixin flexColumnCenter($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+}
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flex-align-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@mixin flex-align-end {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './header.module.scss';
 import logo from '../../assets/icons/logo.png';
-import { Button } from '../button/button.tsx';
+import { Button } from '../button/button';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, selectIsAuth } from '../../redux/slices/auth.ts';
+import { logout, selectIsAuth } from '../../redux/slices/auth';
 
 export const Header = () => {
   const dispatch = useDispatch();

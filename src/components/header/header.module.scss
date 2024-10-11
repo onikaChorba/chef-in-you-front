@@ -1,4 +1,3 @@
-@import "../../index.scss";
 .header {
   display: flex;
   justify-content: space-between;
@@ -19,12 +18,12 @@
     .poppins-bold {
       font-family: "Poppins", sans-serif;
       font-weight: bold;
-      color: $primary;
+      color: var(--primary);
       font-size: 24px;
       transition: color 0.3s ease;
 
       &:hover {
-        color: $black;
+        color: var(--black);
       }
     }
   }
@@ -32,17 +31,19 @@
     display: flex;
     justify-content: center;
     flex: 1;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
     a {
       margin: 0 15px;
       text-decoration: none;
-      color: $primary-grey;
+      color: var(--primary-grey);
       transition: color 0.3s ease;
       &:hover {
-        color: $primary;
+        color: var(--primary);
       }
 
       &.active {
-        color: $primary;
+        color: var(--primary);
       }
     }
   }

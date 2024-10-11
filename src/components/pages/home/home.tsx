@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRecipes, fetchTags } from "../../../redux/slices/recipes.ts";
-import { AppDispatch, RootState } from "../../../redux/store.ts";
+import { fetchRecipes, fetchTags } from "../../../redux/slices/recipes";
+import { AppDispatch, RootState } from "../../../redux/store";
 
 export const Home = () => {
 

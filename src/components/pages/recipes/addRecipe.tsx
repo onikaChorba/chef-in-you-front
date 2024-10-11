@@ -1,10 +1,15 @@
 import React, { useState } from "react"
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectIsAuth } from "../../../redux/slices/auth.ts";
-import { Button } from "../../button/button.tsx";
+import styles from './recipe.module.scss';
+import { selectIsAuth } from "../../../redux/slices/auth";
+import { Input } from "../../input/input";
+import { Button } from "../../button/button";
 import AddRecipesImg from '../../../assets/imgs/addRecipes.jpg';
-import { Input } from "../../input/input.tsx";
+import water from '../../../assets/icons/water.png';
+import cooking from '../../../assets/icons/cooking.png';
+import bake from '../../../assets/icons/bake.png';
+
 export const AddRecipe = () => {
 
   const isAuth = useSelector(selectIsAuth);
@@ -23,12 +28,12 @@ export const AddRecipe = () => {
     setIngredients([...ingredients, { value: "" }]);
   };
 
-  const removeIngredient = (index) => {
+  const removeIngredient = (index: number) => {
     const newIngredients = ingredients.filter((_, i) => i !== index);
     setIngredients(newIngredients);
   };
 
-  const handleChangeIngredient = (e, index) => {
+  const handleChangeIngredient = (e: any, index: number) => {
     const newIngredients = [...ingredients];
     newIngredients[index].value = e.target.value;
 
@@ -42,12 +47,12 @@ export const AddRecipe = () => {
     setInstructions([...instructions, { value: "" }]);
   };
 
-  const removeInstruction = (index) => {
+  const removeInstruction = (index: number) => {
     const newIngredients = instructions.filter((_, i) => i !== index);
     setInstructions(newIngredients);
   };
 
-  const handleChangeInstruction = (e, index) => {
+  const handleChangeInstruction = (e: any, index: number) => {
     const newIngredients = [...instructions];
     newIngredients[index].value = e.target.value;
 
@@ -78,16 +83,31 @@ export const AddRecipe = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <div style={{ width: '50%' }}>
-          <img src={AddRecipesImg} alt="AddRecipesImg" style={{ width: '100%' }} />
+      <div className={styles["add-recipe-container"]}>
+        <div className={styles["image-container"]}>
+          <img src={AddRecipesImg} alt="AddRecipesImg" className={styles["recipe-image"]} />
         </div>
-        <div style={{ width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          <h2 className="poppins-bold">Share Your <span>Recipes</span></h2>
-          <p className="poppins-regular">
+        <div className={styles["text-container"]}>
+          <h2 className={styles["poppins-bold"]}>
+            Share Your <span>Recipes</span>
+          </h2>
+          <p className={styles["poppins-regular"]}>
             Create and share your favorite recipes with others! Add your unique recipe to inspire cooks from all over the world.
           </p>
+
+          <div className={styles["icon-container"]}>
+            <img src={water} alt="Icon 1" className={styles["icon"]} />
+            <img src={cooking} alt="Icon 2" className={styles["icon"]} />
+            <img src={bake} alt="Icon 3" className={styles["icon"]} />
+          </div>
+
+          <Button className="button-primary" text="Add Your Recipe" textStyle="poppins-semibold" />
+
+          <div className={styles["testimonial"]}>
+            <p>“This platform helped me find amazing recipes and share my own!” - Jane D.</p>
+          </div>
         </div>
+
       </div>
 
       <div>
