@@ -5,9 +5,6 @@
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  &:hover {
-    background-color: (var(--primary-dark));
-  }
 }
 
 .button-primary {
@@ -16,6 +13,9 @@
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
+  &:hover {
+    background-color: (var(--primary-dark));
+  }
 }
 
 .button-secondary {
@@ -24,4 +24,9 @@
   color: var(--primary);
   padding: 10px 20px;
   border-radius: 5px;
+
+  &:hover {
+    background-color: (var(--primary-light));
+    color: var(--white);
+  }
 }
