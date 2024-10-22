@@ -43,13 +43,13 @@ export const Header = () => {
               <Button
                 text="Login in"
                 textStyle="poppins-bold"
-                className="button-secondary" />
+                buttonStyle="button-secondary" />
             </NavLink>
             <NavLink to="/registration" className={styles.link}>
               <Button
                 text="Sing up"
                 textStyle="poppins-bold"
-                className="button-primary" />
+              />
             </NavLink>
           </div>
           :

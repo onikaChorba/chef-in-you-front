@@ -9,10 +9,20 @@ import AddRecipesImg from '../../../assets/imgs/addRecipes.jpg';
 import water from '../../../assets/icons/water.png';
 import cooking from '../../../assets/icons/cooking.png';
 import bake from '../../../assets/icons/bake.png';
+import { Popup } from "../../popup/popup";
 
 export const AddRecipe = () => {
 
   const isAuth = useSelector(selectIsAuth);
+  const [isPopupAddRecipeOpen, setIsPopupAddRecipeOpen] = useState(false);
+
+  const openPopupAddRecipe = () => {
+    setIsPopupAddRecipeOpen(true);
+  };
+
+  const closePopupAddRecipe = () => {
+    setIsPopupAddRecipeOpen(false);
+  };
 
   const [ingredients, setIngredients] = useState([{ value: "" }]);
   const [instructions, setInstructions] = useState([{ value: "" }]);
@@ -101,7 +111,7 @@ export const AddRecipe = () => {
             <img src={bake} alt="Icon 3" className={styles["icon"]} />
           </div>
 
-          <Button className="button-primary" text="Add Your Recipe" textStyle="poppins-semibold" />
+          <Button text="Add Your Recipe" textStyle="poppins-semibold" onClick={openPopupAddRecipe} />
 
           <div className={styles["testimonial"]}>
             <p>“This platform helped me find amazing recipes and share my own!” - Jane D.</p>
@@ -109,78 +119,79 @@ export const AddRecipe = () => {
         </div>
 
       </div>
-
-      <div>
-        <Input value={recipeTitle} onChange={(e) => setRecipeTitle(e.target.value)} name="recipe-title" label="Recipe title:" placeholder="Enter your recipe title" type="text" />
-        <Input value={recipeDescription} onChange={(e) => setRecipeDescription(e.target.value)} name="recipe-description" label="Description:" placeholder="Introduce your recipe" type="text" />
+      <Popup isOpen={isPopupAddRecipeOpen} onClose={closePopupAddRecipe} title="Lets create and share your favourite recipe">
         <div>
-          <p style={{
-            fontSize: "16px",
-            fontWeight: "bold",
-            color: "#b55d51",
-            marginBottom: "8px"
-          }}> Ingredients:
-          </p>
+          <Input value={recipeTitle} onChange={(e) => setRecipeTitle(e.target.value)} name="recipe-title" label="Recipe title:" placeholder="Enter your recipe title" type="text" />
+          <Input value={recipeDescription} onChange={(e) => setRecipeDescription(e.target.value)} name="recipe-description" label="Description:" placeholder="Introduce your recipe" type="text" />
+          <div>
+            <p style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              color: "#b55d51",
+              marginBottom: "8px"
+            }}> Ingredients:
+            </p>
 
-          {ingredients.map((ingredient, index) => (
-            <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <div style={{ width: '100%' }} className="input-container">
-                <Input
-                  type="text"
-                  name={`ingredient-${index}`}
-                  placeholder="Add ingredient"
-                  value={ingredient.value || ""}
-                  onChange={(e) => handleChangeIngredient(e, index)}
-                />
+            {ingredients.map((ingredient, index) => (
+              <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ width: '100%' }} className="input-container">
+                  <Input
+                    type="text"
+                    name={`ingredient-${index}`}
+                    placeholder="Add ingredient"
+                    value={ingredient.value || ""}
+                    onChange={(e) => handleChangeIngredient(e, index)}
+                  />
+                </div>
+                <div>
+                  <button type="button" onClick={() => removeIngredient(index)}>
+                    x
+                  </button>
+                </div>
               </div>
-              <div>
-                <button type="button" onClick={() => removeIngredient(index)}>
-                  x
-                </button>
-              </div>
-            </div>
-          ))}
-          <button type="button" onClick={addNewIngridientInput}>
-            Add Another Ingredient
-          </button>
+            ))}
+            <button type="button" onClick={addNewIngridientInput}>
+              Add Another Ingredient
+            </button>
 
-          <p style={{
-            fontSize: "16px",
-            fontWeight: "bold",
-            color: "#b55d51",
-            marginBottom: "8px"
-          }}> Instructions:
-          </p>
-          {instructions.map((instruction, index) => (
-            <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <div style={{ width: '100%' }} className="input-container">
-                <label htmlFor={`instruction-${index}`}>Step {index + 1}:</label>
-                <Input
-                  type="text"
-                  name={`instruction-${index}`}
-                  placeholder="Write instruction"
-                  value={instruction.value || ""}
-                  onChange={(e) => handleChangeInstruction(e, index)}
-                />
+            <p style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              color: "#b55d51",
+              marginBottom: "8px"
+            }}> Instructions:
+            </p>
+            {instructions.map((instruction, index) => (
+              <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ width: '100%' }} className="input-container">
+                  <label htmlFor={`instruction-${index}`}>Step {index + 1}:</label>
+                  <Input
+                    type="text"
+                    name={`instruction-${index}`}
+                    placeholder="Write instruction"
+                    value={instruction.value || ""}
+                    onChange={(e) => handleChangeInstruction(e, index)}
+                  />
+                </div>
+                <div>
+                  <button type="button" onClick={() => removeInstruction(index)}>
+                    x
+                  </button>
+                </div>
               </div>
-              <div>
-                <button type="button" onClick={() => removeInstruction(index)}>
-                  x
-                </button>
-              </div>
-            </div>
-          ))}
-          <button type="button" onClick={addNewInstructionInput}>
-            Add Another Step
-          </button>
+            ))}
+            <button type="button" onClick={addNewInstructionInput}>
+              Add Another Step
+            </button>
+          </div>
+          <Input value={recipeServings} onChange={(e) => setRecipeServings(e.target.value)} name="recipe-servings" label="Servings:" placeholder="How many portions does this recipe make?" type="number" />
+          <Input value={recipeTime} onChange={(e) => setRecipeTime(e.target.value)} name="recipe-time" label="Cooking time:" placeholder="How long does it take to prepate this recipe?" type="number" />
+          <Input value={recipeTags}
+            onChange={(e) => setRecipeTags(e.target.value)} name="recipe-tag" label="Tags" placeholder="Tags" type="text" />
+
+          <Button text="Create New Recipe" textStyle="poppins-bold" className="button-primary" onClick={handleSubmit} />
         </div>
-        <Input value={recipeServings} onChange={(e) => setRecipeServings(e.target.value)} name="recipe-servings" label="Servings:" placeholder="How many portions does this recipe make?" type="number" />
-        <Input value={recipeTime} onChange={(e) => setRecipeTime(e.target.value)} name="recipe-time" label="Cooking time:" placeholder="How long does it take to prepate this recipe?" type="number" />
-        <Input value={recipeTags}
-          onChange={(e) => setRecipeTags(e.target.value)} name="recipe-tag" label="Tags" placeholder="Tags" type="text" />
-
-        <Button text="Create New Recipe" textStyle="poppins-bold" className="button-primary" onClick={handleSubmit} />
-      </div>
+      </Popup>
     </>
   )
 }
