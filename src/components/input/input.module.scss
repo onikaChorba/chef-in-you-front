@@ -1,16 +1,18 @@
-.input-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
+.input {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-  label {
+  &__label {
     font-size: 16px;
     font-weight: bold;
     color: var(--primary);
     margin-bottom: 8px;
   }
 
-  input {
+  &__input {
     padding: 10px 12px;
     font-size: 16px;
     border: 1px solid var(--primary-grey);
@@ -19,7 +21,7 @@
     outline: none;
     transition: border-color 0.3s ease, background-color 0.3s ease;
 
-    &:focus {
+    &--focused {
       border-color: var(--primary);
       background-color: var(--light-grey);
     }

@@ -26,6 +26,11 @@ span {
   color: var(--primary);
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 @media (max-width: 1550px) {
   .container {
     padding: 0 40px;
