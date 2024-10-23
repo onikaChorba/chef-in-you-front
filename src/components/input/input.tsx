@@ -13,14 +13,15 @@ interface IInput {
 export const Input = forwardRef<HTMLInputElement, IInput>(
   ({ value, label, name, type = 'text', placeholder, onChange }, ref) => {
     return (
-      <div className={styles['input-container']}>
-        {label && <label htmlFor={name} className='poppins-bold'>{label}</label>}
+      <div className={styles.input__container}>
+        {label && <label htmlFor={name} className={styles.input__label}>{label}</label>}
         <input
           ref={ref}
           value={value}
           type={type}
           id={name}
           placeholder={placeholder}
+          className={styles.input__input}
           onChange={onChange}
         />
       </div>

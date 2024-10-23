@@ -38,7 +38,7 @@ export const Header = () => {
       </nav>
       {
         !isAuth ?
-          <div className={styles['header__buttons']}>
+          <div className={styles.header__buttons}>
             <NavLink to="/login" className={styles.link}>
               <Button
                 text="Login in"
@@ -57,8 +57,7 @@ export const Header = () => {
             <Button
               text="Login out"
               onClick={() => onClickLogout()}
-              textStyle="poppins-bold"
-              className="button-primary" />
+              textStyle="poppins-bold" />
           </div>
       }
     </header>
