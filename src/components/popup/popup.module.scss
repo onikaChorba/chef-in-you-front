@@ -21,7 +21,8 @@
   &__content {
     position: relative;
     width: calc(100% - 40px);
-    height: calc(100% - 40px);
+    max-height: 850px;
+    overflow-y: scroll;
     background-color: var(--white);
     padding: 20px;
     border-radius: 10px;
