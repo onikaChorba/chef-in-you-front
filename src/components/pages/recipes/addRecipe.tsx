@@ -119,7 +119,11 @@ export const AddRecipe = () => {
         </div>
       </div>
 
-      <Popup isOpen={isPopupAddRecipeOpen} onClose={closePopupAddRecipe} title="Lets create and share your favourite recipe">
+      <Popup
+        isOpen={isPopupAddRecipeOpen}
+        onClose={closePopupAddRecipe}
+        title="Lets create and share your favourite recipe"
+        size="large">
         <div className={styles['add-recipe__form-container']}>
           <Input value={recipeTitle} onChange={(e) => setRecipeTitle(e.target.value)} name="recipe-title" label="Recipe title:" placeholder="Enter your recipe title" type="text" />
           <Input value={recipeDescription} onChange={(e) => setRecipeDescription(e.target.value)} name="recipe-description" label="Description:" placeholder="Introduce your recipe" type="text" />

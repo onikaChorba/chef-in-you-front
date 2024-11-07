@@ -6,10 +6,11 @@ interface IPopup {
   title: string;
   isOpen?: boolean;
   onClose?: () => void;
+  size?: 'standard' | 'large';
   children: React.ReactNode;
 }
 
-export const Popup: React.FC<IPopup> = ({ title, isOpen = false, onClose, children }) => {
+export const Popup: React.FC<IPopup> = ({ title, isOpen = false, onClose, size = 'standard', children }) => {
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,11 +36,11 @@ export const Popup: React.FC<IPopup> = ({ title, isOpen = false, onClose, childr
   return (
     <>
       {
-        isOpen && <div className={styles.popup}>
+        isOpen && <div className={`${styles.popup} ${size === 'large' ? styles.popup__large : styles.popup__standard}`}>
           <div className={styles.popup__content} ref={modalContentRef}>
             <h2 className={`${styles.popup__title} poppins-bold`}>{title}</h2>
             {children}
-            <Button className={`${styles.popup__button} button-primary`} onClick={onClose} text="Close" textStyle="poppins-semibold" />
+            <Button className={`${styles.popup__button}`} onClick={onClose} text="Close" textStyle="poppins-semibold" />
           </div>
         </div>
       }
