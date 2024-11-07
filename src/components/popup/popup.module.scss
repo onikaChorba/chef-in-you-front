@@ -1,7 +1,4 @@
 .popup {
-  width: 90%;
-  height: auto;
-  min-height: 500px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -11,7 +8,16 @@
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-
+  &__large {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 500px;
+    height: auto;
+  }
+  &__standard {
+    min-width: 350px;
+    height: auto;
+  }
   &__content {
     position: relative;
     width: calc(100% - 40px);
@@ -30,5 +36,13 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    background: var(--light-grey);
+    color: var(--primary-dark);
+    transition-duration: 1s;
+    text-transform: capitalize;
+    &:hover {
+      background: var(--primary-light);
+      color: var(--white);
+    }
   }
 }

@@ -4,12 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
 import { fetchRegister, selectIsAuth } from "../../../redux/slices/auth";
 import { Input } from "../../input/input";
+import { Popup } from "../../popup/popup";
+import { Button } from "../../button/button";
 
-export const Registration = () => {
+interface IRegistration {
+  setShowRegForm: (showRegForm: boolean) => void;
+}
+export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch<AppDispatch>();
 
-  const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       fullName: "Test Text",
       email: "test@gmail.com",
@@ -23,16 +28,16 @@ export const Registration = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Input placeholder="full name" {...register('fullName', { required: 'Write full name' })} type="text" />
-      {errors.fullName?.message}
-      <Input placeholder="email" {...register('email', { required: 'Write email' })} type="email" />
-      {errors.email?.message}
-      <Input placeholder="password" {...register('password', { required: 'Write password please' })} />
-      {errors.password?.message}
-      <button className='button' type='submit'>
-        Sing Up
-      </button>
-    </form>
+    <Popup title="Sing up" isOpen={true} onClose={() => setShowRegForm(false)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="form-block">
+        <Input placeholder="full name" {...register('fullName', { required: 'Write full name' })} type="text" />
+        {errors.fullName?.message}
+        <Input placeholder="email" {...register('email', { required: 'Write email' })} type="email" />
+        {errors.email?.message}
+        <Input placeholder="password" {...register('password', { required: 'Write password please' })} />
+        {errors.password?.message}
+        <Button text="Sing Up" textStyle="poppins-bold" />
+      </form>
+    </Popup>
   )
 }

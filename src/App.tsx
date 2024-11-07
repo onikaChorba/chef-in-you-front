@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { Header } from './components/header/header';
@@ -12,6 +12,8 @@ import { AppDispatch } from './redux/store';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showRegForm, setShowRegForm] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAuthMe())
@@ -19,15 +21,15 @@ function App() {
 
   return (
     <div className='container'>
-      <Header />
+      <Header setShowLoginForm={setShowLoginForm} setShowRegForm={setShowRegForm} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/recipes' element={<>Recipes</>} />
         <Route path='/recipes/tags' element={<>tags</>} />
         <Route path='/recipes/:id' element={<RecipeDetails />} />
         <Route path='/add-recipe' element={<AddRecipe />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/registration' element={<Registration />} />
+        <Route path='/login' element={showLoginForm && <Login setShowLoginForm={setShowLoginForm} />} />
+        <Route path='/registration' element={showRegForm && <Registration setShowRegForm={setShowRegForm} />} />
         <Route path='/me' element={<>me</>} />
         <Route path='/blog' element={<>blog</>} />
       </Routes>

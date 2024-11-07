@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './header.module.scss';
 import logo from '../../assets/icons/logo.png';
@@ -6,7 +6,12 @@ import { Button } from '../button/button';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectIsAuth } from '../../redux/slices/auth';
 
-export const Header = () => {
+interface IHeader {
+  setShowLoginForm: (showLoginForm: boolean) => void;
+  setShowRegForm: (showRegForm: boolean) => void;
+}
+
+export const Header: React.FC<IHeader> = ({ setShowLoginForm, setShowRegForm }) => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
@@ -43,12 +48,14 @@ export const Header = () => {
               <Button
                 text="Login in"
                 textStyle="poppins-bold"
-                buttonStyle="button-secondary" />
+                buttonStyle="button-secondary"
+                onClick={() => setShowLoginForm(true)} />
             </NavLink>
             <NavLink to="/registration" className={styles.link}>
               <Button
                 text="Sing up"
                 textStyle="poppins-bold"
+                onClick={() => setShowRegForm(true)}
               />
             </NavLink>
           </div>
