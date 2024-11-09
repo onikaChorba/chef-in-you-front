@@ -18,10 +18,14 @@ export type TUser = {
 }
 
 export type TRecipe = {
-  _id: string,
+  _id?: string,
   title: string,
-  text: string,
-  imageUrl: string,
-  tags: Array<string>,
-  user: string,
+  description: string,
+  servings: number,
+  time: string,
+  tags: Array<string> | string,
+  ingredients: string[],
+  instructions: string[],
+  user?: string,
+  imageUrl?: string,
 }
