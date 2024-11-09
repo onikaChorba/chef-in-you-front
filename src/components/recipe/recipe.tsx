@@ -27,7 +27,7 @@ export const RecipeDetails = () => {
       {data ? (
         <div>
           <h1>{data.title}: {data._id}</h1>
-          <p>{data.text}</p>
+          <p>{data.description}</p>
           <p>{data.user}</p>
           {(data.user === userData?._id) && <button> Remove recipe</button>}
         </div>

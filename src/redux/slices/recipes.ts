@@ -1,17 +1,26 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "../../axios";
+import { TRecipe } from "../../types";
 
-export const fetchRecipes = createAsyncThunk('recipes/fetchRecipes', async () => {
-  const { data } = await axios.get('/recipes');
-  return data;
-});
+interface RecipesState {
+  recipes: {
+    items: TRecipe[];
+    status: "loading" | "succeeded" | "failed";
+  };
+  tags: {
+    items: {
+      tags: []
+    };
+    status: "loading" | "succeeded" | "failed";
+  };
+}
 
-export const fetchTags = createAsyncThunk('recipes/fetchTags', async () => {
-  const { data } = await axios.get('/recipes/tags');
-  return data;
-});
+interface AddRecipeParams {
+  recipeData: TRecipe;
+  token: string;
+}
 
-const initialState = {
+const initialState: RecipesState = {
   recipes: {
     items: [],
     status: "loading",
@@ -22,6 +31,33 @@ const initialState = {
   },
 };
 
+export const fetchRecipes = createAsyncThunk<TRecipe[]>('recipes/fetchRecipes', async () => {
+  const { data } = await axios.get('/recipes');
+  return data;
+});
+
+export const fetchTags = createAsyncThunk('recipes/fetchTags', async () => {
+  const { data } = await axios.get('/recipes/tags');
+  return data;
+});
+
+export const addRecipe = createAsyncThunk(
+  'recipes/addRecipe',
+  async ({ recipeData, token }: AddRecipeParams, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/recipes', recipeData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);
+
 const recipesSlice = createSlice({
   name: "recipes",
   initialState,
@@ -31,13 +67,14 @@ const recipesSlice = createSlice({
       .addCase(fetchRecipes.pending, (state) => {
         state.recipes.status = 'loading';
       })
-      .addCase(fetchRecipes.fulfilled, (state, action) => {
+      .addCase(fetchRecipes.fulfilled, (state, action: PayloadAction<TRecipe[]>) => {
         state.recipes.status = 'succeeded';
         state.recipes.items = action.payload;
       })
       .addCase(fetchRecipes.rejected, (state) => {
         state.recipes.status = 'failed';
       })
+
       .addCase(fetchTags.pending, (state) => {
         state.tags.status = 'loading';
       })
@@ -47,6 +84,17 @@ const recipesSlice = createSlice({
       })
       .addCase(fetchTags.rejected, (state) => {
         state.tags.status = 'failed';
+      })
+
+      .addCase(addRecipe.pending, (state) => {
+        state.recipes.status = 'loading';
+      })
+      .addCase(addRecipe.fulfilled, (state, action: PayloadAction<TRecipe>) => {
+        state.recipes.status = 'succeeded';
+        state.recipes.items.push(action.payload);
+      })
+      .addCase(addRecipe.rejected, (state) => {
+        state.recipes.status = 'failed';
       });
   },
 });

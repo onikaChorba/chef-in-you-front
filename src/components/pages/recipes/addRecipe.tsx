@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch } from "../../../redux/store";
 import styles from './recipe.module.scss';
 import { selectIsAuth } from "../../../redux/slices/auth";
 import { Input } from "../../input/input";
@@ -10,10 +11,21 @@ import water from '../../../assets/icons/water.png';
 import cooking from '../../../assets/icons/cooking.png';
 import bake from '../../../assets/icons/bake.png';
 import { Popup } from "../../popup/popup";
-
+import { addRecipe } from "../../../redux/slices/recipes";
+interface RecipeData {
+  title: string;
+  description: string;
+  servings: number;
+  time: string;
+  tags: string;
+  ingredients: string[];
+  instructions: string[];
+  userId: string | null;
+}
 export const AddRecipe = () => {
 
   const isAuth = useSelector(selectIsAuth);
+  const dispatch = useDispatch<AppDispatch>();
   const [isPopupAddRecipeOpen, setIsPopupAddRecipeOpen] = useState(false);
 
   const openPopupAddRecipe = () => {
@@ -73,20 +85,43 @@ export const AddRecipe = () => {
     setInstructions(newIngredients);
   };
 
-  const handleSubmit = () => {
-    const recipeData = {
+  const getPayloadFromToken = () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return null;
+
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload;
+    } catch (error) {
+      console.error('Invalid token format', error);
+      return null;
+    }
+  };
+
+  const payload = getPayloadFromToken();
+  const userId = payload ? payload._id : null;
+
+  const handleSubmit = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('Authorization token not found');
+      return;
+    }
+
+    const recipeData: RecipeData = {
       title: recipeTitle,
       description: recipeDescription,
-      servings: recipeServings,
+      servings: Number(recipeServings),
       time: recipeTime,
       tags: recipeTags,
       ingredients: ingredients.map(item => item.value),
       instructions: instructions.map(item => item.value),
+      userId: userId,
     };
 
+    await dispatch(addRecipe({ recipeData, token }));
     console.log('Recipe data:', recipeData);
   };
-
   if (!window.localStorage.getItem("token") && !isAuth) {
     return <Navigate to="/" />
   };
