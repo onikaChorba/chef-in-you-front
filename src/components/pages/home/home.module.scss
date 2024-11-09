@@ -1,0 +1,15 @@
+@import "../../../theme/index.scss";
+.hero {
+  min-height: calc(100vh - 65.5px);
+  @include flex-space-between;
+  align-items: center;
+
+  &__textblock {
+    width: 50%;
+    @include flex-column-start;
+    gap: 10px;
+  }
+  &__animation {
+    width: 50%;
+  }
+}

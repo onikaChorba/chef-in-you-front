@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import styles from './recipe.module.scss'
 import { TRecipe } from "../../types/index";
 import axios from '../../axios';
+import { Button } from "../button/button";
 
-export const RecipeDetails = () => {
+export const RecipeCard = ({ recipe }: any) => {
   const [data, setData] = useState<TRecipe | null>(null);
   const userData = useSelector((state: any) => state.auth.data);
   const { id } = useParams();
@@ -23,17 +25,28 @@ export const RecipeDetails = () => {
   }, [id]);
 
   return (
-    <>
-      {data ? (
+
+    <div className={styles.recipeCard}>
+      {/* <button
+          className={styles.recipeCard__saveButton}
+        // onClick={() => handleSaveRecipe(recipe._id)}
+        >
+          Save to Favorites
+        </button> */}
+      <div className={styles.recipeCard__image}>
+        <img src={recipe.imageUrl} alt={recipe.name} />
+      </div>
+      <div className={styles.recipeCard__info}>
+        <h3 className={styles.recipeCard__title}>{recipe.title}</h3>
         <div>
-          <h1>{data.title}: {data._id}</h1>
-          <p>{data.description}</p>
-          <p>{data.user}</p>
-          {(data.user === userData?._id) && <button> Remove recipe</button>}
+          user:
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </>
+        <p>{recipe.viewsCount}</p>
+        <Link to={`/recipes/${recipe._id}`} className={styles.recipeCard__link}>
+          <Button textStyle="poppins-bold" buttonStyle="button-link" text="View Recipe" />
+        </Link>
+        {/* {(data.user === userData?._id) && <button> Remove recipe</button>} */}
+      </div>
+    </div>
   );
 }

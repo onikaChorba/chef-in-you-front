@@ -1,36 +1,23 @@
-import React, { useEffect } from "react";
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { fetchRecipes, fetchTags } from "../../../redux/slices/recipes";
-import { AppDispatch, RootState } from "../../../redux/store";
+import React from "react";
+import styles from './home.module.scss';
+import { Button } from "../../button/button";
 
 export const Home = () => {
-
-  const dispatch: AppDispatch = useDispatch();
-  const { recipes, tags } = useSelector((state: RootState) => state.recipes);
-
-  useEffect(() => {
-    dispatch(fetchRecipes());
-    dispatch(fetchTags());
-  }, [dispatch]);
-
   return (
-    <div>
-      <h1>Recipes</h1>
-      <ul>
-        {recipes.items.map((recipe: any, index: number) => (
-          <li key={index}>{recipe._id}
-            <Link to={`/recipes/${recipe._id}`} >Link</Link>
-          </li>
-        ))}
-      </ul>
-
-      <h2>Tags</h2>
-      <ul>
-        {tags.items.tags.map((tag: string, index: number) => (
-          <li key={index}>{tag}</li>
-        ))}
-      </ul>
+    <div className={styles.hero}>
+      <div className={styles.hero__textblock}>
+        <h1 className="poppins-black">Your Daily Dish <br />
+          A <span>Food</span> Journey
+        </h1>
+        <p className="poppins-medium">
+          Discover new flavors, savor beloved classics, and explore the art of cooking with us. From easy weeknight meals to gourmet creations, we bring you recipes, tips, and inspiration for every occasion. Let’s make every meal an adventure in taste!
+        </p>
+        <Button text="Sign up" textStyle="" />
+        <p className="poppins-regular">Do you have an account? <span>Log in</span></p>
+      </div>
+      <div className={styles.hero__animation}>
+        Animation
+      </div>
     </div>
-  )
-}
+  );
+};

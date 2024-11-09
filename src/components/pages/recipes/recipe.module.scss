@@ -27,7 +27,7 @@
 
   &__text-container {
     flex: 1;
-    @include flexColumnCenter(0px);
+    // @include flex-column-center(0px);
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
@@ -161,4 +161,17 @@
       border-color: var(--primary-grey);
     }
   }
+}
+
+.recipes {
+  &__title {
+    @include flex-space-between;
+    align-items: center;
+  }
+  &__list {
+    @include flex-center;
+  }
+}
+.recipes__list {
+  @include flex-center;
 }
