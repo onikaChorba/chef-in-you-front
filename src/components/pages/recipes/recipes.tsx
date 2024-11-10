@@ -4,7 +4,7 @@ import styles from './recipe.module.scss'
 import { fetchRecipes, fetchTags } from "../../../redux/slices/recipes";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { Button } from "../../button/button";
-import { RecipeCard } from "../../recipe/recipe";
+import { RecipeCard } from "../../recipe/recipeCard/recipeCard";
 
 export const Recipes = () => {
 
