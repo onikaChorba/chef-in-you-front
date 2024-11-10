@@ -19,6 +19,7 @@ export type TUser = {
 
 export type TRecipe = {
   _id?: string,
+  createdAt?: string,
   title: string,
   description: string,
   servings: number,
@@ -28,4 +29,5 @@ export type TRecipe = {
   instructions: string[],
   user?: string,
   imageUrl?: string,
+  viewsCount?: Number
 }
