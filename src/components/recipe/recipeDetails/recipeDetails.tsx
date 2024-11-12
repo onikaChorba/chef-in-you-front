@@ -27,7 +27,7 @@ export const RecipeDetails = () => {
     <div className={styles.recipeDetails}>
       <h2 className={styles.recipeDetails__title}>{recipe?.title}</h2>
       <div className={styles.recipeDetails__meta}>
-        <span className={styles.recipeDetails__user}>{recipe?.user}</span>
+        <span className={styles.recipeDetails__user}>{recipe?.user?.fullName}</span>
         <span className={styles.recipeDetails__date}>{recipe?.createdAt}</span>
         <span className={styles.recipeDetails__views}>Views: {recipe?.viewsCount as any}</span>
         <button className={styles.recipeDetails__saveButton} >Save</button>
