@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
-import styles from './recipe.module.scss';
+import styles from './recipes.module.scss';
 import { selectIsAuth } from "../../../redux/slices/auth";
 import { Input } from "../../input/input";
 import { Button } from "../../button/button";

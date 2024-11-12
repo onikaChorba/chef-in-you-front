@@ -6,7 +6,7 @@
   gap: $gap;
 }
 
-@mixin flex-colum-center($gap: 0) {
+@mixin flex-column-center($gap: 0) {
   display: flex;
   flex-direction: column;
   align-items: center;
