@@ -1,0 +1,120 @@
+@import "../../theme/index.scss";
+.footer {
+  background: var(--primary);
+  &__content {
+    background: var(--primary);
+    display: flex;
+    flex-direction: column;
+    padding: 60px 40px;
+    @include screen-md {
+      flex-direction: initial;
+      justify-content: space-between;
+      padding: 60px 40px;
+    }
+  }
+  &__autor {
+    padding-bottom: 40px;
+    color: var(--primary-light);
+    text-align: center;
+  }
+  &__link-item {
+    display: block;
+    color: white;
+    padding-bottom: 25px;
+    margin-left: 10%;
+    text-decoration: none;
+    @include screen-md {
+      margin-left: 0%;
+    }
+  }
+  &__form {
+    @include flex-column-start-start(15);
+    gap: 15px;
+  }
+  &__form-title {
+    padding-top: 15px;
+    font-weight: 700;
+    color: white;
+  }
+  &__form-description {
+    color: var(--primary-light);
+    padding-top: 20px;
+  }
+  input {
+    border: none;
+  }
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    padding-bottom: 20px;
+    padding-top: 48px;
+    @include screen-md {
+      padding-top: 0;
+    }
+  }
+  &__logo-img {
+    width: auto;
+    height: 28px;
+  }
+  &__info {
+    text-align: left;
+    color: var(--primary-light);
+    width: 263px;
+    padding-bottom: 32px;
+  }
+  &__social-icons {
+    cursor: pointer;
+    padding-bottom: 32px;
+
+    img {
+      padding-right: 6px;
+    }
+  }
+}
+
+.footer-link {
+  &__header {
+    @include flex-space-between;
+    border-top: 1px solid white;
+    cursor: pointer;
+
+    @include screen-md {
+      border-top: none;
+    }
+  }
+  &__title {
+    width: 100%;
+    height: 45px;
+    @include flex-column-start;
+    color: white;
+    margin-left: 10%;
+    font-weight: 700;
+    @include screen-md {
+      padding-bottom: 33px;
+      margin-left: 0%;
+    }
+  }
+  &__arrow {
+    width: 10%;
+    margin-right: 20px;
+    border: none;
+    background: transparent;
+    @include screen-md {
+      display: none;
+    }
+  }
+  &__list {
+    li {
+      list-style: none;
+    }
+    @include screen-md {
+      display: initial !important;
+    }
+  }
+}
+
+.icon-subscribe {
+  height: 30px;
+}
