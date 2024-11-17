@@ -164,6 +164,7 @@
 }
 
 .recipes {
+  min-height: calc(100vh - 383px - 65px);
   &__title {
     @include flex-space-between;
     align-items: center;

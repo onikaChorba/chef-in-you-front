@@ -21,6 +21,13 @@
   justify-content: center;
   gap: $gap;
 }
+@mixin flex-column-start-start($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: $gap;
+}
 
 @mixin flex-space-between {
   display: flex;

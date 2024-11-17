@@ -10,6 +10,7 @@ import { AddRecipe } from './components/pages/recipes/addRecipe';
 import { fetchAuthMe } from './redux/slices/auth';
 import { AppDispatch } from './redux/store';
 import { Recipes } from './components/pages/recipes/recipes';
+import Footer from './components/footer/footer';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
         <Route path='/me' element={<>me</>} />
         <Route path='/blog' element={<>blog</>} />
       </Routes>
+      <Footer />
     </div>
   );
 }
