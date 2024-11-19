@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import styles from './recipeDetails.module.scss'
 import { TRecipe } from "../../../types/index";
 import axios from '../../../axios';
-import { Button } from "../../button/button";
 
 export const RecipeDetails = () => {
   const [recipe, setRecipe] = useState<TRecipe | null>(null);
@@ -48,7 +47,7 @@ export const RecipeDetails = () => {
           </div>
           <div className={styles.recipeDetails__tags}>
             {Array.isArray(recipe?.tags) ? (
-              recipe.tags.map((tag: string, index: number) => (
+              recipe?.tags.map((tag: string, index: number) => (
                 <span key={index} className={styles.recipeDetails__tag}>{tag}</span>
               ))
             ) : (
