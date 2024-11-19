@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './home.module.scss';
 import { Button } from "../../button/button";
+import TrendingRecipesCarousel from "../../carousel/carousel";
 
 export const Home = () => {
   return (
@@ -16,7 +17,7 @@ export const Home = () => {
         <p className="poppins-regular">Do you have an account? <span>Log in</span></p>
       </div>
       <div className={styles.hero__animation}>
-        Animation
+        <TrendingRecipesCarousel />
       </div>
     </div>
   );

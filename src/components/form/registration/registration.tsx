@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
-import { fetchRegister, selectIsAuth } from "../../../redux/slices/auth";
+import { fetchRegister } from "../../../redux/slices/auth";
 import { Input } from "../../input/input";
 import { Popup } from "../../popup/popup";
 import { Button } from "../../button/button";
@@ -11,7 +11,6 @@ interface IRegistration {
   setShowRegForm: (showRegForm: boolean) => void;
 }
 export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
-  const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch<AppDispatch>();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
