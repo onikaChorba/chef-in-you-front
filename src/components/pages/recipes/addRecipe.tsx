@@ -127,7 +127,7 @@ export const AddRecipe = () => {
   };
 
   return (
-    <>
+    <div style={{ height: "100vh" }}>
       <div className={styles['add-recipe']}>
         <div className={styles['add-recipe__image-container']}>
           <img src={AddRecipesImg} alt="AddRecipesImg" className={styles['add-recipe__image']} />
@@ -230,7 +230,7 @@ export const AddRecipe = () => {
             textStyle="poppins-bold" onClick={handleSubmit} />
         </div>
       </Popup>
-    </>
+    </div>
 
   )
 }

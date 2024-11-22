@@ -2,8 +2,9 @@
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
-  max-width: 1200px;
+  max-width: 100%;
   margin: auto;
+  height: 100%;
 }
 
 .trending-carousel__title {
@@ -37,4 +38,12 @@
 .recipe-card__description {
   font-size: 14px;
   color: #555;
+}
+
+.recipe-card__image {
+  transition: transform 0.3s ease;
+}
+
+.swiper-slide-active .recipe-card__image {
+  transform: scale(1.5);
 }

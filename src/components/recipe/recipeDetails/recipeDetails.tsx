@@ -12,7 +12,7 @@ export const RecipeDetails = () => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`/recipes/${id}`)
+      axios.get(`/api/recipes/${id}`)
         .then(res => {
           setRecipe(res.data);
         })
