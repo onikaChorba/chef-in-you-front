@@ -32,12 +32,12 @@ const initialState: RecipesState = {
 };
 
 export const fetchRecipes = createAsyncThunk<TRecipe[]>('recipes/fetchRecipes', async () => {
-  const { data } = await axios.get('/recipes');
+  const { data } = await axios.get('/api/recipes');
   return data;
 });
 
 export const fetchTags = createAsyncThunk('recipes/fetchTags', async () => {
-  const { data } = await axios.get('/recipes/tags');
+  const { data } = await axios.get('/api/recipes/tags');
   return data;
 });
 
