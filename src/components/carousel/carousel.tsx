@@ -1,57 +1,24 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-// import Navigation from 'swiper';
 
 import './carousel.style.scss';
 
-const TrendingRecipesCarousel = () => {
-  const recipes = [
-    {
-      id: 1,
-      image: 'https://via.placeholder.com/400',
-      title: 'Сніданок Шефа',
-      description: 'Смачний омлет із зеленню.',
-    },
-    {
-      id: 2,
-      image: 'https://via.placeholder.com/400',
-      title: 'Лазанья',
-      description: 'Класична італійська страва.',
-    },
-    {
-      id: 3,
-      image: 'https://via.placeholder.com/400',
-      title: 'Фруктовий Салат',
-      description: 'Легкий та корисний перекус.',
-    },
-    {
-      id: 4,
-      image: 'https://via.placeholder.com/400',
-      title: 'Сніданок ',
-      description: 'Смачний ',
-    },
-    {
-      id: 5,
-      image: 'https://via.placeholder.com/400',
-      title: 'Лазанья',
-      description: 'Класична італійська страва.',
-    },
-    {
-      id: 6,
-      image: 'https://via.placeholder.com/400',
-      title: 'Фруктовий Салат',
-      description: 'Легкий та корисний перекус.',
-    },
-  ];
+const TrendingRecipesCarousel = ({ recipes }: any) => {
+  if (!Array.isArray(recipes)) {
+    return <div>No recipes available</div>;
+  }
 
   return (
     <div className="trending-carousel">
-      <h2 className="trending-carousel__title">Трендові Рецепти</h2>
+      <h2 className="trending-carousel__title">Trending Recipes</h2>
       <Swiper
+        modules={[Navigation, Autoplay]}
         spaceBetween={20}
-        slidesPerView={1}
+        slidesPerView={3}
+        centeredSlides={true}
         navigation
         breakpoints={{
           640: {
@@ -61,13 +28,23 @@ const TrendingRecipesCarousel = () => {
             slidesPerView: 3,
           },
         }}
+        autoplay={{
+          delay: 100,
+          disableOnInteraction: false,
+        }}
+        speed={2000}
+        loop
       >
-        {recipes.map((recipe) => (
+        {recipes && recipes.map((recipe: any) => (
           <SwiperSlide key={recipe.id}>
             <div className="recipe-card">
-              <img src={recipe.image} alt={recipe.title} className="recipe-card__image" />
-              <h3 className="recipe-card__title">{recipe.title}</h3>
-              <p className="recipe-card__description">{recipe.description}</p>
+              <img
+                src={recipe.imageUrl}
+                alt={recipe.title}
+                className="recipe-card__image"
+              />
+              {/* <h3 className="recipe-card__title">{recipe.title}</h3>
+              <p className="recipe-card__description">{recipe.description}</p> */}
             </div>
           </SwiperSlide>
         ))}

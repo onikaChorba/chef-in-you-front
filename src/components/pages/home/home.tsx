@@ -3,7 +3,8 @@ import styles from './home.module.scss';
 import { Button } from "../../button/button";
 import TrendingRecipesCarousel from "../../carousel/carousel";
 
-export const Home = () => {
+export const Home = ({ recipes }: any) => {
+
   return (
     <div className={styles.hero}>
       <div className={styles.hero__textblock}>
@@ -17,7 +18,7 @@ export const Home = () => {
         <p className="poppins-regular">Do you have an account? <span>Log in</span></p>
       </div>
       <div className={styles.hero__animation}>
-        <TrendingRecipesCarousel />
+        <TrendingRecipesCarousel recipes={recipes} />
       </div>
     </div>
   );

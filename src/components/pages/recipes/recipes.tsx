@@ -1,20 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import styles from './recipes.module.scss'
-import { fetchRecipes, fetchTags } from "../../../redux/slices/recipes";
-import { AppDispatch, RootState } from "../../../redux/store";
 import { Button } from "../../button/button";
 import { RecipeCard } from "../../recipe/recipeCard/recipeCard";
 
-export const Recipes = () => {
-
-  const dispatch: AppDispatch = useDispatch();
-  const { recipes, tags } = useSelector((state: RootState) => state.recipes);
-
-  useEffect(() => {
-    dispatch(fetchRecipes());
-    dispatch(fetchTags());
-  }, [dispatch]);
+export const Recipes = ({ recipes, tags }: any) => {
 
   return (
     <div className={styles.recipes}>
