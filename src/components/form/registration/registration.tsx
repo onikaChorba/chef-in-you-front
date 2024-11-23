@@ -8,7 +8,9 @@ import { Input } from "../../input/input";
 import { Popup } from "../../popup/popup";
 import { Button } from "../../button/button";
 import signupImg from '../../../assets/imgs/singUp.jpeg';
-
+import userIcon from '../../../assets/icons/user-for-input.svg';
+import email from '../../../assets/icons/email.svg';
+import password from '../../../assets/icons/password.svg';
 interface IRegistration {
   setShowRegForm: (showRegForm: boolean) => void;
 }
@@ -18,9 +20,9 @@ export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      fullName: "Test Text",
-      email: "test@gmail.com",
-      password: "tests",
+      fullName: "",
+      email: "",
+      password: "",
     },
     mode: "onChange",
   });
@@ -42,6 +44,7 @@ export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
               placeholder="Full name"
               {...register('fullName', { required: 'Write full name' })}
               type="text"
+              icon={userIcon}
             />
             {errors.fullName?.message && (
               <p className={styles['form__error']}>{errors.fullName.message}</p>
@@ -50,6 +53,7 @@ export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
               placeholder="Email"
               {...register('email', { required: 'Write email' })}
               type="email"
+              icon={email}
             />
             {errors.email?.message && (
               <p className={styles['form__error']}>{errors.email.message}</p>
@@ -57,6 +61,7 @@ export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
             <Input
               placeholder="Password"
               {...register('password', { required: 'Write password please' })}
+              icon={password}
             />
             {errors.password?.message && (
               <p className={styles['form__error']}>{errors.password.message}</p>
