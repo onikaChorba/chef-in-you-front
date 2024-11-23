@@ -1,9 +1,8 @@
+@import "../../theme/index.scss";
 .input {
-  &__container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
   &__label {
     font-size: 16px;
@@ -12,23 +11,36 @@
     margin-bottom: 8px;
   }
 
-  &__input {
+  &__wrapper {
+    display: flex;
+    gap: 10px;
     padding: 10px 12px;
     font-size: 16px;
-    border: 1px solid var(--primary-grey);
+    border: 1px solid var(--light-grey);
     border-radius: 4px;
     color: var(--black);
+    background: white;
     outline: none;
     transition: border-color 0.3s ease, background-color 0.3s ease;
-
-    &--focused {
+    &:has(.input__field:focus) {
       border-color: var(--primary);
-      background-color: var(--light-grey);
     }
+  }
+  &__icon {
+    width: 20px;
+  }
+  &__field {
+    display: block;
+    border: none;
+    background: transparent;
 
     &::placeholder {
+      opacity: 0.7;
       color: var(--mid-grey);
       font-style: italic;
+    }
+    &:focus {
+      outline: none;
     }
   }
 }
