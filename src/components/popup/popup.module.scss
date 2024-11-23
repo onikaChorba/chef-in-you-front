@@ -3,10 +3,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--primary-light);
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   &__large {
     width: 90%;
@@ -20,7 +16,7 @@
   }
   &__content {
     position: relative;
-    width: calc(100% - 40px);
+    width: 100%;
     max-height: 850px;
     overflow-y: scroll;
     background-color: var(--white);

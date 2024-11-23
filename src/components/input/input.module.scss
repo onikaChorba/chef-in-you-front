@@ -19,6 +19,7 @@
     border: 1px solid var(--light-grey);
     border-radius: 4px;
     color: var(--black);
+    background: white;
     outline: none;
     transition: border-color 0.3s ease, background-color 0.3s ease;
     &:has(.input__field:focus) {
@@ -31,6 +32,7 @@
   &__field {
     display: block;
     border: none;
+    background: transparent;
 
     &::placeholder {
       opacity: 0.7;
