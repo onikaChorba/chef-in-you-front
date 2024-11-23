@@ -3,7 +3,7 @@ import styles from "./popup.module.scss";
 import { Button } from "../button/button";
 
 interface IPopup {
-  title: string;
+  title?: string;
   isOpen?: boolean;
   onClose?: () => void;
   size?: 'standard' | 'large';
