@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import styles from './recipeDetails.module.scss'
+import styles from './recipeDetails.module.scss';
 import { TRecipe } from "../../../types/index";
 import axios from '../../../axios';
 
@@ -11,29 +11,40 @@ export const RecipeDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    let isMounted = true;
+
     if (id) {
       axios.get(`/api/recipes/${id}`)
         .then(res => {
-          setRecipe(res.data);
+          if (isMounted) {
+            setRecipe(res.data);
+          }
         })
         .catch(error => {
           console.warn(error);
-          alert('Can not to get recipe');
+          alert('Cannot get recipe');
         });
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
+
+  const isRecipeOwner = useMemo(() => recipe?.user === userData?._id, [recipe, userData]);
+
   return (
     <div className={styles.recipeDetails}>
       <h2 className={styles.recipeDetails__title}>{recipe?.title}</h2>
       <div className={styles.recipeDetails__meta}>
         <span className={styles.recipeDetails__user}>{recipe?.user?.fullName}</span>
         <span className={styles.recipeDetails__date}>{recipe?.createdAt}</span>
-        <span className={styles.recipeDetails__views}>Views: {recipe?.viewsCount as any}</span>
-        <button className={styles.recipeDetails__saveButton} >Save</button>
-        <button className={styles.recipeDetails__shareButton} >Share</button>
+        <span className={styles.recipeDetails__views}>Views: {String(recipe?.viewsCount)}</span>
+        <button className={styles.recipeDetails__saveButton}>Save</button>
+        <button className={styles.recipeDetails__shareButton}>Share</button>
 
-        {(recipe?.user === userData?._id) && <button> Remove recipe</button>}
-        {(recipe?.user === userData?._id) && <button> Edit recipe</button>}
+        {isRecipeOwner && <button>Remove recipe</button>}
+        {isRecipeOwner && <button>Edit recipe</button>}
       </div>
       <hr className={styles.recipeDetails__divider} />
       <div className={styles.recipeDetails__content}>
@@ -69,5 +80,5 @@ export const RecipeDetails = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
