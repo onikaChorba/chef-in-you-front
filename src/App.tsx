@@ -11,6 +11,7 @@ import { RecipeDetails } from './components/recipe/recipeDetails/recipeDetails';
 import { AddRecipe } from './components/pages/recipes/addRecipe';
 import { fetchAuthMe } from './redux/slices/auth';
 import { Recipes } from './components/pages/recipes/recipes';
+import { Blog } from './components/pages/blog/blog'
 import Footer from './components/footer/footer';
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
         <Route path='/login' element={showLoginForm && <Login setShowLoginForm={setShowLoginForm} />} />
         <Route path='/registration' element={showRegForm && <Registration setShowRegForm={setShowRegForm} />} />
         <Route path='/me' element={<>me</>} />
-        <Route path='/blog' element={<>blog</>} />
+        <Route path='/blog' element={<Blog />} />
       </Routes>
       <Footer />
     </div>
