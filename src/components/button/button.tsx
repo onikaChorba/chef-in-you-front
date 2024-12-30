@@ -7,11 +7,12 @@ interface IButton {
   className?: string;
   textStyle: string;
   buttonStyle?: string;
+  type?: string;
 }
 
-export const Button: React.FC<IButton> = ({ text, onClick, className, textStyle, buttonStyle = "button-primary" }) => {
+export const Button: React.FC<IButton> = ({ text, onClick, className, textStyle, buttonStyle = "button-primary" }, type) => {
   return (
-    <button onClick={onClick} className={`${styles.button} ${textStyle} ${className} ${styles[buttonStyle]}`}>
+    <button onClick={onClick} className={`${styles.button} ${textStyle} ${className} ${styles[buttonStyle]}`} type={type}>
       {text}
     </button>
   )

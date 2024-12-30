@@ -20,7 +20,7 @@ interface RecipeData {
   tags: string;
   ingredients: string[];
   instructions: string[];
-  userId: string | null;
+  user: string | null | string;
 }
 export const AddRecipe = () => {
 
@@ -116,7 +116,7 @@ export const AddRecipe = () => {
       tags: recipeTags,
       ingredients: ingredients.map(item => item.value),
       instructions: instructions.map(item => item.value),
-      userId: userId,
+      user: userId,
     };
 
     await dispatch(addRecipe({ recipeData, token }));
@@ -127,7 +127,7 @@ export const AddRecipe = () => {
   };
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div>
       <div className={styles['add-recipe']}>
         <div className={styles['add-recipe__image-container']}>
           <img src={AddRecipesImg} alt="AddRecipesImg" className={styles['add-recipe__image']} />

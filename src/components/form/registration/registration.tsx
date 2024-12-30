@@ -19,15 +19,21 @@ export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      fullName: "",
-      email: "",
-      password: "",
+      fullName: "test112233",
+      email: "test112233@gmail.com",
+      password: "mfmdsnmn",
     },
     mode: "onChange",
   });
 
-  const onSubmit = async (values: { fullName: string, email: string; password: string }) => {
-    await dispatch(fetchRegister(values));
+  const onSubmit = async (values: any) => {
+    const payload = {
+      fullName: values.fullName,
+      email: values.email,
+      password: values.password,
+    };
+    console.log('Payload:', payload);
+    await dispatch(fetchRegister(payload));
   };
 
   return (
@@ -68,6 +74,7 @@ export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
                 <p className={styles['form__error']}>{errors.password.message}</p>
               )}
               <Button
+                type="submit"
                 text="Sign Up"
                 textStyle="poppins-bold"
                 className={styles['form__button']}

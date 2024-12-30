@@ -45,7 +45,7 @@ export const addRecipe = createAsyncThunk(
   'recipes/addRecipe',
   async ({ recipeData, token }: AddRecipeParams, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/recipes', recipeData, {
+      const { data } = await axios.post('/api/recipes', recipeData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,

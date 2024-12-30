@@ -6,7 +6,7 @@ import { TRecipe } from "../../../types/index";
 import axios from '../../../axios';
 
 export const RecipeDetails = () => {
-  const [recipe, setRecipe] = useState<TRecipe | null>(null);
+  const [recipe, setRecipe] = useState<TRecipe | null | any>(null);
   const userData = useSelector((state: any) => state.auth.data);
   const { id } = useParams();
 
