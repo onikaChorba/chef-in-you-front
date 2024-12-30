@@ -58,12 +58,25 @@ export const addRecipe = createAsyncThunk(
   }
 );
 
+export const fetchDeleteRecipe = createAsyncThunk(
+  'recipes/fetchDeleteRecipe',
+  async (recipeId: string) => {
+    try {
+      await axios.delete(`/api/recipes/${recipeId}`);
+      return recipeId;
+    } catch (error) {
+      console.error(error)
+    }
+  }
+);
+
 const recipesSlice = createSlice({
   name: "recipes",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
+      //get all recipes
       .addCase(fetchRecipes.pending, (state) => {
         state.recipes.status = 'loading';
       })
@@ -74,7 +87,7 @@ const recipesSlice = createSlice({
       .addCase(fetchRecipes.rejected, (state) => {
         state.recipes.status = 'failed';
       })
-
+      //get tags
       .addCase(fetchTags.pending, (state) => {
         state.tags.status = 'loading';
       })
@@ -85,7 +98,7 @@ const recipesSlice = createSlice({
       .addCase(fetchTags.rejected, (state) => {
         state.tags.status = 'failed';
       })
-
+      //add new recipe
       .addCase(addRecipe.pending, (state) => {
         state.recipes.status = 'loading';
       })
@@ -95,6 +108,13 @@ const recipesSlice = createSlice({
       })
       .addCase(addRecipe.rejected, (state) => {
         state.recipes.status = 'failed';
+      })
+      //delete recipe
+      .addCase(fetchDeleteRecipe.fulfilled, (state, action) => {
+        state.recipes.items = state.recipes.items.filter(recipe => recipe._id !== action.payload);
+      })
+      .addCase(fetchDeleteRecipe.rejected, (state) => {
+        console.error("Failed to delete recipe");
       });
   },
 });
