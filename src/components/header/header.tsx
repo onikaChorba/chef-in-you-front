@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import styles from './header.module.scss';
 import logo from '../../assets/icons/logo.png';
@@ -7,14 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectIsAuth } from '../../redux/slices/auth';
 
 interface IHeader {
-  setShowLoginForm: (showLoginForm: boolean) => void;
-  setShowRegForm: (showRegForm: boolean) => void;
+
 }
 
-export const Header: React.FC<IHeader> = ({ setShowLoginForm, setShowRegForm }) => {
+export const Header: React.FC<IHeader> = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
-
+  const navigate = useNavigate();
   const onClickLogout = () => {
     if (window.confirm('Are you sure you want to logout?')) {
       dispatch(logout());
@@ -49,13 +49,13 @@ export const Header: React.FC<IHeader> = ({ setShowLoginForm, setShowRegForm }) 
                 text="Login in"
                 textStyle="poppins-bold"
                 buttonStyle="button-secondary"
-                onClick={() => setShowLoginForm(true)} />
+                onClick={() => navigate("/login")} />
             </NavLink>
             <NavLink to="/registration" className={styles.link}>
               <Button
                 text="Sing up"
                 textStyle="poppins-bold"
-                onClick={() => setShowRegForm(true)}
+                onClick={() => navigate("/registration")}
               />
             </NavLink>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./redux/store";
@@ -16,8 +16,6 @@ import Footer from './components/footer/footer';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showRegForm, setShowRegForm] = useState(false);
 
   const { recipes, tags } = useSelector((state: RootState) => state.recipes);
 
@@ -32,15 +30,15 @@ function App() {
 
   return (
     <div className='container'>
-      <Header setShowLoginForm={setShowLoginForm} setShowRegForm={setShowRegForm} />
+      <Header />
       <Routes>
         <Route path='/' element={<Home recipes={recipes.items} />} />
         <Route path='/recipes' element={<Recipes recipes={recipes} tags={tags} />} />
         <Route path='/recipes/tags' element={<>tags</>} />
         <Route path='/recipes/:id' element={<RecipeDetails />} />
         <Route path='/add-recipe' element={<AddRecipe />} />
-        <Route path='/login' element={showLoginForm && <Login setShowLoginForm={setShowLoginForm} />} />
-        <Route path='/registration' element={showRegForm && <Registration setShowRegForm={setShowRegForm} />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/registration' element={<Registration />} />
         <Route path='/me' element={<>me</>} />
         <Route path='/blog' element={<Blog />} />
       </Routes>

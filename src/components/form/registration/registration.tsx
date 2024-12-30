@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
 import { fetchRegister } from "../../../redux/slices/auth";
+import { RegisterParams } from "../../../types";
 import { Input } from "../../input/input";
 import { Button } from "../../button/button";
 import signupImg from '../../../assets/imgs/singUp.jpeg';
@@ -11,10 +12,9 @@ import userIcon from '../../../assets/icons/user-for-input.svg';
 import email from '../../../assets/icons/email.svg';
 import password from '../../../assets/icons/password.svg';
 interface IRegistration {
-  setShowRegForm: (showRegForm: boolean) => void;
 }
 
-export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
+export const Registration: React.FC<IRegistration> = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -26,7 +26,7 @@ export const Registration: React.FC<IRegistration> = ({ setShowRegForm }) => {
     mode: "onChange",
   });
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: RegisterParams) => {
     const payload = {
       fullName: values.fullName,
       email: values.email,
