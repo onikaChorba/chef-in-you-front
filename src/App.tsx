@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./redux/store";
 import { fetchRecipes, fetchTags } from "./redux/slices/recipes";
 import { Header } from './components/header/header';
-import { Home } from './components/pages/home/home';
+import { Home } from './pages/home/home';
 import { Registration } from './components/form/registration/registration';
 import { Login } from './components/form/login/login';
 import { RecipeDetails } from './components/recipe/recipeDetails/recipeDetails';
-import { AddRecipe } from './components/pages/recipes/addRecipe';
+import { AddRecipe } from './pages/addRecipe/addRecipe';
 import { fetchAuthMe } from './redux/slices/auth';
-import { Recipes } from './components/pages/recipes/recipes';
-import { Blog } from './components/pages/blog/blog'
+import { Recipes } from './pages/recipes/recipes';
+import { Blog } from './pages/blog/blog'
 import Footer from './components/footer/footer';
 
 function App() {

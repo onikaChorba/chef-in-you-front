@@ -1,4 +1,4 @@
-@import "../../../theme/index.scss";
+@import "../../theme/index.scss";
 .hero {
   min-height: calc(100vh - 65.5px);
   @include flex-space-between;

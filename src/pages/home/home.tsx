@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './home.module.scss';
-import { Button } from "../../button/button";
-import TrendingRecipesCarousel from "../../carousel/carousel";
+import { Button } from "../../components/button/button";
+import TrendingRecipesCarousel from "../../components/carousel/carousel";
 
 export const Home = ({ recipes }: any) => {
 

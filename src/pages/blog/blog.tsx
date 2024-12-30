@@ -1,9 +1,9 @@
 import React from "react";
 import styles from './blog.module.scss';
-import articleTop from '../../../assets/imgs/article-top.png'
-import cheesecake from '../../../assets/imgs/cheesecake.jpeg'
-import impact from '../../../assets/imgs/impact.jpg'
-import { Button } from "../../button/button";
+import articleTop from '../../assets/imgs/article-top.png'
+import cheesecake from '../../assets/imgs/cheesecake.jpeg'
+import impact from '../../assets/imgs/impact.jpg'
+import { Button } from "../../components/button/button";
 export const Blog = () => {
   return (
     <div className={styles.blog}>
