@@ -1,4 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../redux/store";
+import { fetchDeleteRecipe } from "../../../redux/slices/recipes";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styles from './recipeDetails.module.scss';
@@ -6,7 +9,8 @@ import { TRecipe } from "../../../types/index";
 import axios from '../../../axios';
 
 export const RecipeDetails = () => {
-  const [recipe, setRecipe] = useState<TRecipe | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const [recipe, setRecipe] = useState<TRecipe | null | any>(null);
   const userData = useSelector((state: any) => state.auth.data);
   const { id } = useParams();
 
@@ -32,7 +36,11 @@ export const RecipeDetails = () => {
   }, [id]);
 
   const isRecipeOwner = useMemo(() => recipe?.user === userData?._id, [recipe, userData]);
-
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this recipe?")) {
+      await dispatch(fetchDeleteRecipe(id as string));
+    }
+  };
   return (
     <div className={styles.recipeDetails}>
       <h2 className={styles.recipeDetails__title}>{recipe?.title}</h2>
@@ -43,7 +51,7 @@ export const RecipeDetails = () => {
         <button className={styles.recipeDetails__saveButton}>Save</button>
         <button className={styles.recipeDetails__shareButton}>Share</button>
 
-        {isRecipeOwner && <button>Remove recipe</button>}
+        {isRecipeOwner && <button onClick={handleDelete}>Remove recipe</button>}
         {isRecipeOwner && <button>Edit recipe</button>}
       </div>
       <hr className={styles.recipeDetails__divider} />

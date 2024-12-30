@@ -27,7 +27,7 @@ export type TRecipe = {
   tags: Array<string> | string,
   ingredients: string[],
   instructions: string[],
-  user?: TUser,
+  user?: TUser | null | string,
   imageUrl?: string,
   viewsCount?: Number
 }
