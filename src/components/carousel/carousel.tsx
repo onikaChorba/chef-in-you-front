@@ -1,10 +1,9 @@
 import React from 'react';
+import styles from './carousel.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-
-import './carousel.style.scss';
 
 const TrendingRecipesCarousel = ({ recipes }: any) => {
   if (!Array.isArray(recipes)) {
@@ -12,8 +11,8 @@ const TrendingRecipesCarousel = ({ recipes }: any) => {
   }
 
   return (
-    <div className="trending-carousel">
-      <h2 className="trending-carousel__title">Trending Recipes</h2>
+    <div className={styles["trending-carousel"]}>
+      <h2 className={styles["trending-carousel__title"]}>Trending Recipes</h2>
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={20}
@@ -33,18 +32,16 @@ const TrendingRecipesCarousel = ({ recipes }: any) => {
           disableOnInteraction: false,
         }}
         speed={2000}
-        loop
+        loop={recipes.length > 3}
       >
-        {recipes && recipes.map((recipe: any) => (
-          <SwiperSlide key={recipe.id}>
-            <div className="recipe-card">
+        {recipes && recipes.map((recipe: any, index) => (
+          <SwiperSlide key={index}>
+            <div className={styles["recipe-card"]}>
               <img
                 src={recipe.imageUrl}
                 alt={recipe.title}
-                className="recipe-card__image"
+                className={styles["recipe-card__image"]}
               />
-              {/* <h3 className="recipe-card__title">{recipe.title}</h3>
-              <p className="recipe-card__description">{recipe.description}</p> */}
             </div>
           </SwiperSlide>
         ))}

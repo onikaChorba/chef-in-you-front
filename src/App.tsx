@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./redux/store";
@@ -13,11 +13,13 @@ import { fetchAuthMe } from './redux/slices/auth';
 import { Recipes } from './pages/recipes/recipes';
 import { Blog } from './pages/blog/blog'
 import Footer from './components/footer/footer';
+import { Subscribe } from './components/form/subscribe/subscribe';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
 
   const { recipes, tags } = useSelector((state: RootState) => state.recipes);
+  const [showSubscribeForm, setShowSubscribeForm] = useState(false);
 
   useEffect(() => {
     dispatch(fetchRecipes());
@@ -42,7 +44,10 @@ function App() {
         <Route path='/me' element={<>me</>} />
         <Route path='/blog' element={<Blog />} />
       </Routes>
-      <Footer />
+      {
+        showSubscribeForm && <Subscribe showSubscribeForm={showSubscribeForm} setShowSubscribeForm={setShowSubscribeForm} />
+      }
+      <Footer showSubscribeForm={showSubscribeForm} setShowSubscribeForm={setShowSubscribeForm} />
     </div>
   );
 }

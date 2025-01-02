@@ -11,7 +11,6 @@ import arrow from "../../assets/icons/arrow-down.svg";
 
 function Links(props: any) {
   const [isAddList, setIsAddList] = useState(false);
-
   const onClickArrowList = () => {
     setIsAddList(!isAddList);
   };
@@ -33,7 +32,13 @@ function Links(props: any) {
     </div>
   );
 }
-function Footer() {
+function Footer({
+  setShowSubscribeForm,
+  showSubscribeForm,
+}: {
+  setShowSubscribeForm: (showSubscribeForm: boolean) => void;
+  showSubscribeForm: boolean;
+}) {
   const data = {
     linkQuick1: [
       { href: "/", text: "Home" },
@@ -103,7 +108,7 @@ function Footer() {
           <div className={styles['footer__form-title']}> News letter</div>
           <p className={styles['footer__form-description']}> Subscribe to our news letter to get more free tip</p>
           <Input name="email" placeholder="Enter Your Email" />
-          <Button text="Subscribe" textStyle="poppins-semibold" buttonStyle="button-secondary" />
+          <Button text="Subscribe" textStyle="poppins-semibold" buttonStyle="button-secondary" onClick={() => setShowSubscribeForm(!showSubscribeForm)} />
         </div>
       </div>
       <div className={styles.footer__autor}>Copyright © 2024. Created with love.</div>
