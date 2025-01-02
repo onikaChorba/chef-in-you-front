@@ -29,4 +29,8 @@
     @include flex-column-center;
     gap: 20px;
   }
+  &__text {
+    text-align: center;
+    color: var(--mid-grey);
+  }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './recipes.module.scss'
-import { Button } from "../../button/button";
-import { RecipeCard } from "../../recipe/recipeCard/recipeCard";
+import { Button } from "../../components/button/button";
+import { RecipeCard } from "../../components/recipe/recipeCard/recipeCard";
 
 export const Recipes = ({ recipes, tags }: any) => {
 

@@ -1,0 +1,52 @@
+@import "../../theme/index.scss";
+
+.recipes {
+  min-height: calc(100vh - 383px - 65px);
+  &__title {
+    @include flex-space-between;
+    align-items: center;
+  }
+  &__content {
+    display: flex;
+    gap: 10px;
+  }
+  &__tags-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__tags-header {
+    color: var(--primary-dark);
+  }
+
+  &__tags {
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      width: fit-content;
+      padding: 0.3rem 0.8rem;
+      border-radius: 0.5rem;
+      background-color: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 1px solid var(--primary);
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+
+      &:hover {
+        background-color: var(--primary);
+        color: var(--white);
+      }
+    }
+  }
+  &__list {
+    @include flex-center;
+  }
+}

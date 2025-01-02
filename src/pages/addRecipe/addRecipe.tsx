@@ -1,17 +1,17 @@
 import React, { useState } from "react"
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch } from "../../../redux/store";
-import styles from './recipes.module.scss';
-import { selectIsAuth } from "../../../redux/slices/auth";
-import { Input } from "../../input/input";
-import { Button } from "../../button/button";
-import AddRecipesImg from '../../../assets/imgs/addRecipes.jpg';
-import water from '../../../assets/icons/water.png';
-import cooking from '../../../assets/icons/cooking.png';
-import bake from '../../../assets/icons/bake.png';
-import { Popup } from "../../popup/popup";
-import { addRecipe } from "../../../redux/slices/recipes";
+import { AppDispatch } from "../../redux/store";
+import styles from './addRecipe.module.scss';
+import { selectIsAuth } from "../../redux/slices/auth";
+import { Input } from "../../components/input/input";
+import { Button } from "../../components/button/button";
+import AddRecipesImg from '../../assets/imgs/addRecipes.jpg';
+import water from '../../assets/icons/water.png';
+import cooking from '../../assets/icons/cooking.png';
+import bake from '../../assets/icons/bake.png';
+import { Popup } from "../../components/popup/popup";
+import { addRecipe } from "../../redux/slices/recipes";
 interface RecipeData {
   title: string;
   description: string;

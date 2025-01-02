@@ -10,9 +10,8 @@ import { Button } from "../../button/button";
 import loginInImg from '../../../assets/imgs/junkfood.jpg';
 
 interface ILogin {
-  setShowLoginForm: (showLoginForm: boolean) => void;
 }
-export const Login: React.FC<ILogin> = ({ setShowLoginForm }) => {
+export const Login: React.FC<ILogin> = () => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -49,7 +48,7 @@ export const Login: React.FC<ILogin> = ({ setShowLoginForm }) => {
             <Button text="Login In" textStyle="poppins-bold" />
           </form>
           <div className={styles['form__signup-image']}>
-            <img src={loginInImg} />
+            <img src={loginInImg} alt="food" />
           </div>
         </div>
       </div>
