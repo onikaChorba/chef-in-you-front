@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./redux/store";
@@ -31,24 +32,26 @@ function App() {
   })
 
   return (
-    <div className='container'>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home recipes={recipes.items} />} />
-        <Route path='/recipes' element={<Recipes recipes={recipes} tags={tags} />} />
-        <Route path='/recipes/tags' element={<>tags</>} />
-        <Route path='/recipes/:id' element={<RecipeDetails />} />
-        <Route path='/add-recipe' element={<AddRecipe />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/registration' element={<Registration />} />
-        <Route path='/me' element={<>me</>} />
-        <Route path='/blog' element={<Blog />} />
-      </Routes>
-      {
-        showSubscribeForm && <Subscribe showSubscribeForm={showSubscribeForm} setShowSubscribeForm={setShowSubscribeForm} />
-      }
-      <Footer showSubscribeForm={showSubscribeForm} setShowSubscribeForm={setShowSubscribeForm} />
-    </div>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}>
+      <div className='container'>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home recipes={recipes.items} />} />
+          <Route path='/recipes' element={<Recipes recipes={recipes} tags={tags} />} />
+          <Route path='/recipes/tags' element={<>tags</>} />
+          <Route path='/recipes/:id' element={<RecipeDetails />} />
+          <Route path='/add-recipe' element={<AddRecipe />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/registration' element={<Registration />} />
+          <Route path='/me' element={<>me</>} />
+          <Route path='/blog' element={<Blog />} />
+        </Routes>
+        {
+          showSubscribeForm && <Subscribe showSubscribeForm={showSubscribeForm} setShowSubscribeForm={setShowSubscribeForm} />
+        }
+        <Footer showSubscribeForm={showSubscribeForm} setShowSubscribeForm={setShowSubscribeForm} />
+      </div>
+    </GoogleOAuthProvider>
   );
 }
 

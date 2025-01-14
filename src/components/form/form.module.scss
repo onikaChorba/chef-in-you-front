@@ -33,4 +33,10 @@
     text-align: center;
     color: var(--mid-grey);
   }
+  &__google {
+    padding-top: 20px;
+    @include flex-column-center;
+    gap: 20px;
+    text-align: center;
+  }
 }
