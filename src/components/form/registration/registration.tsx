@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import styles from '../form.module.scss';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from "react-redux";
@@ -34,6 +36,27 @@ export const Registration: React.FC<IRegistration> = () => {
     };
     console.log('Payload:', payload);
     await dispatch(fetchRegister(payload));
+  };
+
+  const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
+    try {
+      if (credentialResponse.credential) {
+        const token = credentialResponse.credential;
+
+        const userInfoResponse = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const userInfo = userInfoResponse.data;
+
+        console.log('Google User Info:', userInfo);
+
+      } else {
+        console.error('Google login failed: no credential received');
+      }
+    } catch (error) {
+      console.error('Error during Google login:', error);
+    }
   };
 
   return (
@@ -80,6 +103,16 @@ export const Registration: React.FC<IRegistration> = () => {
                 className={styles['form__button']}
               />
             </form>
+            <div className={styles['form__google']}>
+              <p className={`${styles['form__subtitle']} poppins-bold`}>
+                Or Sign Up with Google
+              </p>
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={() => console.error('Google login failed')}
+              />
+            </div>
+
           </div>
         </div>
       </div>
