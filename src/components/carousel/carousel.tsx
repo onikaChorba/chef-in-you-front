@@ -12,19 +12,18 @@ const TrendingRecipesCarousel = ({ recipes }: any) => {
 
   return (
     <div className={styles["trending-carousel"]}>
-      <h2 className={styles["trending-carousel__title"]}>Trending Recipes</h2>
+      <h3 className={styles["trending-carousel__title"]} >Trending Recipes</h3>
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={20}
-        slidesPerView={3}
+        slidesPerView={5}
         centeredSlides={true}
-        navigation
         breakpoints={{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 3,
           },
           1024: {
-            slidesPerView: 3,
+            slidesPerView: 5,
           },
         }}
         autoplay={{

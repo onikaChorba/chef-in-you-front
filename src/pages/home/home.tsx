@@ -3,12 +3,17 @@ import styles from './home.module.scss';
 import { Button } from "../../components/button/button";
 import TrendingRecipesCarousel from "../../components/carousel/carousel";
 import cookies from '../../assets/icons/cookie.png';
+import { useNavigate } from "react-router-dom";
 
 export const Home = ({ recipes }: any) => {
+  const navigate = useNavigate();
   const [showPrivacy, setShowPrivacy] = useState(true);
   return (
     <>
       <div className={styles.hero} style={{ minHeight: showPrivacy ? 'calc(100vh - 65.5px - 130px)' : 'calc(100vh - 65.5px)' }}>
+        <div className={styles.hero__animation}>
+          <TrendingRecipesCarousel recipes={recipes} />
+        </div>
         <div className={styles.hero__textblock}>
           <h1 className="poppins-black">Your Daily Dish <br />
             A <span>Food</span> Journey
@@ -16,11 +21,8 @@ export const Home = ({ recipes }: any) => {
           <p className="poppins-medium">
             Discover new flavors, savor beloved classics, and explore the art of cooking with us. From easy weeknight meals to gourmet creations, we bring you recipes, tips, and inspiration for every occasion. Let’s make every meal an adventure in taste!
           </p>
-          <Button text="Sign up" textStyle="" />
-          <p className="poppins-regular">Do you have an account? <span>Log in</span></p>
-        </div>
-        <div className={styles.hero__animation}>
-          <TrendingRecipesCarousel recipes={recipes} />
+          <Button text="Sign up" textStyle="" onClick={() => navigate('/registration')} />
+          <p className="poppins-regular">Do you have an account? <button onClick={() => navigate('/login')}><span className="poppins-bold">Log in</span></button></p>
         </div>
       </div>
       {

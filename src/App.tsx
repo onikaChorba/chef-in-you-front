@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ import { Recipes } from './pages/recipes/recipes';
 import { Blog } from './pages/blog/blog'
 import Footer from './components/footer/footer';
 import { Subscribe } from './components/form/subscribe/subscribe';
+import bgImg from './assets/imgs/bg.svg';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}>
       <div className='container'>
+        <img src={bgImg} className='container__img' />
         <Header />
         <Routes>
           <Route path='/' element={<Home recipes={recipes.items} />} />
