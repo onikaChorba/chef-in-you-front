@@ -5,6 +5,7 @@ import { Button } from "../../button/button";
 import view from '../../../assets/icons/view.svg';
 import user from '../../../assets/icons/user.svg';
 import save from '../../../assets/icons/save.svg';
+
 export const RecipeCard = ({ recipe }: any) => {
   return (
     <div className={styles.recipeCard}>

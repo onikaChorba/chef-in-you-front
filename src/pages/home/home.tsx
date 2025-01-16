@@ -8,7 +8,8 @@ import cookies from '../../assets/icons/cookie.png';
 import heroImg from '../../assets/imgs/hero-img.png';
 import userAvatar from '../../assets/icons/user-avatar.png'
 import womanAvatar from '../../assets/icons/woman-avatar.png'
-
+import { RecipeCard } from "../../components/recipe/recipeCard/recipeCard";
+import { Input } from "../../components/input/input";
 const CommentBlock = ({ style, user, icon, text }: any) => {
   return (
     <div className={styles.commentBlock} style={style}>
@@ -82,6 +83,25 @@ export const Home = ({ recipes }: any) => {
       </section>
       <section>
         <AddRecipe />
+      </section>
+      <section className={styles.recipes}>
+        <div className={styles.recipes__title}>
+          <h2 className="poppins-extrabold">Trending Recipe</h2>
+          <Button text="View more" textStyle="poppins-bold" buttonStyle="button-link" />
+        </div>
+        <div className={styles.recipes__list}>
+          {recipes.items.slice(0, 4).map((recipe: any, index: number) => (
+            <RecipeCard recipe={recipe} key={index} />
+          ))}
+        </div>
+      </section>
+      <section className={styles.letsStayInTouch}>
+        <div className={styles.letsStayInTouch__block}>
+          <h2 className="poppins-bold">Let`s Stay In Touch!</h2>
+          <p className="text">Join our newsletter, so that we rech out to you with our news and offers</p>
+          <Input name="email" placeholder="Enter Your Email" />
+          <Button text="Subscribe" textStyle="" />
+        </div>
       </section>
     </>
   );

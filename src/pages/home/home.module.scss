@@ -26,6 +26,7 @@
 }
 .privacy {
   position: fixed;
+  z-index: 1000;
   @include flex-space-between;
   align-items: center;
   gap: 40px;
@@ -79,5 +80,32 @@
   &__title {
     color: var(--primary);
     padding-bottom: 10px;
+  }
+}
+.recipes {
+  @include flex-column-start;
+  &__title {
+    @include flex-space-between;
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    height: 355px;
+    overflow-y: scroll;
+  }
+}
+.letsStayInTouch {
+  @include flex-column-center;
+  padding: 40px;
+  background: var(--primary-light);
+  margin-top: 40px;
+
+  &__block {
+    width: 500px;
+    @include flex-column-center;
+    gap: 20px;
+    text-align: center;
   }
 }

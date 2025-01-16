@@ -44,6 +44,7 @@ const TrendingRecipesCarousel = ({ recipes }: any) => {
             </div>
           </SwiperSlide>
         ))}
+
       </Swiper>
     </div>
   );
