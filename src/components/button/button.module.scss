@@ -41,6 +41,8 @@
   border: none;
   color: var(--primary);
   transition-duration: 1s;
+  border-radius: 5px;
+  padding: 5px;
 
   &:hover {
     background-color: var(--primary-light);
