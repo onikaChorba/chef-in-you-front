@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import styles from './home.module.scss';
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/button/button";
 import TrendingRecipesCarousel from "../../components/carousel/carousel";
 import cookies from '../../assets/icons/cookie.png';
-import { useNavigate } from "react-router-dom";
+import heroImg from '../../assets/imgs/hero-img.png';
+import userAvatar from '../../assets/icons/user-avatar.png'
+import womanAvatar from '../../assets/icons/woman-avatar.png'
+
+const CommentBlock = ({ style, user, icon, text }: any) => {
+  return (
+    <div className={styles.commentBlock} style={style}>
+      <div>
+        <img src={icon} alt="user" width={70} />
+      </div>
+      <div>
+        <p className={`${styles.commentBlock__title} poppins-bold text`}>{user}</p>
+        <p className={`${styles.commentBlock__text} text`}>{text}</p>
+      </div>
+    </div>
+  )
+}
 
 export const Home = ({ recipes }: any) => {
   const navigate = useNavigate();
@@ -15,14 +32,37 @@ export const Home = ({ recipes }: any) => {
           <TrendingRecipesCarousel recipes={recipes} />
         </div>
         <div className={styles.hero__textblock}>
-          <h1 className="poppins-black">Your Daily Dish <br />
-            A <span>Food</span> Journey
-          </h1>
-          <p className="poppins-medium">
-            Discover new flavors, savor beloved classics, and explore the art of cooking with us. From easy weeknight meals to gourmet creations, we bring you recipes, tips, and inspiration for every occasion. Let’s make every meal an adventure in taste!
-          </p>
-          <Button text="Sign up" textStyle="" onClick={() => navigate('/registration')} />
-          <p className="poppins-regular">Do you have an account? <button onClick={() => navigate('/login')}><span className="poppins-bold">Log in</span></button></p>
+          <div className={styles['hero__textblock-text']}>
+            <h1 className="poppins-black">Your Daily Dish <br />
+              A <span>Food</span> Journey
+            </h1>
+            <p className="poppins-medium">
+              Discover new flavors, savor beloved classics, and explore the art of cooking with us. From easy weeknight meals to gourmet creations, we bring you recipes, tips, and inspiration for every occasion. Let’s make every meal an adventure in taste!
+            </p>
+            <Button text="Sign up" textStyle="" onClick={() => navigate('/registration')} />
+            <p className="poppins-regular">Do you have an account? <button onClick={() => navigate('/login')}><span className="poppins-bold">Log in</span></button></p>
+          </div>
+          <div className={styles['hero__textblock-img']}>
+            <img src={heroImg} width="50%" />
+            <CommentBlock
+              user="Jon Johnson"
+              icon={userAvatar}
+              text="Wow, this recipe is a flawor explosion in my mouth! very deliclous."
+              style={{
+                position: 'absolute',
+                bottom: '230px',
+                right: '0px'
+              }} />
+            <CommentBlock
+              user="Kati Milano"
+              icon={womanAvatar}
+              text="I love this site. I can find a lot of recipes"
+              style={{
+                position: 'absolute',
+                bottom: '130px',
+                left: '50px'
+              }} />
+          </div>
         </div>
       </div>
       {

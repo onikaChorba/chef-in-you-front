@@ -6,9 +6,17 @@
   justify-content: flex-start;
   gap: 40px;
   &__textblock {
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__textblock-text {
+    width: 50%;
     @include flex-column-start;
     gap: 10px;
+  }
+  &__textblock-img {
+    position: relative;
+    text-align: center;
   }
   &__animation {
     padding-top: 60px;
@@ -52,5 +60,21 @@
     border: none;
     background: transparent;
     color: var(--primary);
+  }
+}
+.commentBlock {
+  width: 250px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  padding: 15px;
+  @include flex-space-between;
+  align-items: center;
+  gap: 10px;
+
+  &__title {
+    color: var(--primary);
+    padding-bottom: 10px;
   }
 }
