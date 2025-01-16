@@ -19,9 +19,17 @@
 }
 
 .container {
+  position: relative;
   max-width: 1550px;
+  box-sizing: border-box;
   width: 100%;
-  padding: 0 20px;
+
+  &__img {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: -1;
+  }
 }
 
 .form-block {
@@ -38,6 +46,12 @@ span {
 p {
   margin: 0;
   padding: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 1550px) {
