@@ -25,11 +25,14 @@
   }
 }
 .privacy {
+  position: fixed;
   @include flex-space-between;
   align-items: center;
   gap: 40px;
   box-sizing: border-box;
   width: 100%;
+  max-width: 1550px;
+  background: white;
   padding: 20px;
   border: 2px solid var(--primary-light);
   border-radius: 10px;

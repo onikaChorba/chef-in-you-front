@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import styles from './addRecipe.module.scss';
@@ -12,6 +12,7 @@ import cooking from '../../assets/icons/cooking.png';
 import bake from '../../assets/icons/bake.png';
 import { Popup } from "../../components/popup/popup";
 import { addRecipe } from "../../redux/slices/recipes";
+
 interface RecipeData {
   title: string;
   description: string;
@@ -26,6 +27,7 @@ export const AddRecipe = () => {
 
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const [isPopupAddRecipeOpen, setIsPopupAddRecipeOpen] = useState(false);
 
   const openPopupAddRecipe = () => {
@@ -122,9 +124,8 @@ export const AddRecipe = () => {
     await dispatch(addRecipe({ recipeData, token }));
     console.log('Recipe data:', recipeData);
   };
-  if (!window.localStorage.getItem("token") && !isAuth) {
-    return <Navigate to="/" />
-  };
+
+  const unsigned = !window.localStorage.getItem("token") && !isAuth
 
   return (
     <div>
@@ -145,9 +146,9 @@ export const AddRecipe = () => {
             <img src={cooking} alt="Icon 2" className={styles['add-recipe__icon']} />
             <img src={bake} alt="Icon 3" className={styles['add-recipe__icon']} />
           </div>
-
-          <Button text="Add Your Recipe" textStyle="poppins-semibold" onClick={openPopupAddRecipe} />
-
+          {
+            unsigned ? <Button text="Sign up for creating recipes" textStyle="poppins-semibold" onClick={() => navigate('/registration')} /> : <Button text="Add Your Recipe" textStyle="poppins-semibold" onClick={openPopupAddRecipe} />
+          }
           <div className={styles['add-recipe__testimonial']}>
             <p>“This platform helped me find amazing recipes and share my own!” - Jane D.</p>
           </div>

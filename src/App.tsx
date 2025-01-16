@@ -35,10 +35,10 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}>
       <div className='container'>
-        <img src={bgImg} className='container__img' />
+        <img src={bgImg} className='container__img' alt='bgImg' />
         <Header />
         <Routes>
-          <Route path='/' element={<Home recipes={recipes.items} />} />
+          <Route path='/' element={<Home recipes={recipes} />} />
           <Route path='/recipes' element={<Recipes recipes={recipes} tags={tags} />} />
           <Route path='/recipes/tags' element={<>tags</>} />
           <Route path='/recipes/:id' element={<RecipeDetails />} />
