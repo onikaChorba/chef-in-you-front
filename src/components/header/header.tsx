@@ -1,11 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './header.module.scss';
-import logo from '../../assets/icons/logo.png';
+import Images from '../../images';
 import { Button } from '../button/button';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectIsAuth } from '../../redux/slices/auth';
-
 interface IHeader {
   setShowLoginForm: (showLoginForm: boolean) => void;
   setShowRegForm: (showRegForm: boolean) => void;
@@ -24,7 +23,7 @@ export const Header: React.FC<IHeader> = ({ setShowLoginForm, setShowRegForm }) 
   return (
     <header className={styles.header}>
       <div className={styles.header__logo}>
-        <img src={logo} alt="logo" />
+        <img src={Images.logo} alt="logo" />
         <p className={styles['poppins-bold']}>Chef in you</p>
       </div>
       <nav className={`${styles.header__nav} ${styles['poppins-semibold']}`}>

@@ -1,7 +1,6 @@
 @import "../../theme/index.scss";
 .form {
   background-color: var(--white);
-  padding: 20px;
   &__signup {
     @include flex-space-between;
     align-items: center;

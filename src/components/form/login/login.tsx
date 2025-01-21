@@ -7,10 +7,10 @@ import { AppDispatch } from "../../../redux/store";
 import { fetchLogin, selectIsAuth } from "../../../redux/slices/auth";
 import { Input } from "../../input/input";
 import { Button } from "../../button/button";
+import { Popup } from "../../popup/popup";
 import loginInImg from '../../../assets/imgs/junkfood.jpg';
 import email from '../../../assets/icons/email.svg';
 import password from '../../../assets/icons/password.svg';
-import { Popup } from "../../popup/popup";
 
 interface ILogin {
   showLoginForm: boolean;

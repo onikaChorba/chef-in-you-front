@@ -3,21 +3,9 @@ import styles from './home.module.scss';
 import { Button } from "../../components/button/button";
 import TrendingRecipesCarousel from "../../components/carousel/carousel";
 import { AddRecipe } from "../addRecipe/addRecipe";
-import cookies from '../../assets/icons/cookie.png';
-import heroImg from '../../assets/imgs/hero-img.png';
-import userAvatar from '../../assets/icons/user-avatar.png'
-import womanAvatar from '../../assets/icons/woman-avatar.png'
 import { RecipeCard } from "../../components/recipe/recipeCard/recipeCard";
 import { Input } from "../../components/input/input";
-import Pizza from '../../assets/imgs/pizza.jpg'
-import Italian from '../../assets/imgs/pasta.jpg'
-import Vegetarian from '../../assets/imgs/vegeterian.jpg'
-import Stirfry from '../../assets/imgs/stir-fry.jpg'
-import Asian from '../../assets/imgs/asian.png'
-import Cookies from '../../assets/imgs/cookies.png'
-import Dessert from '../../assets/imgs/dessert.jpeg'
-import Baking from '../../assets/imgs/baking.png'
-
+import Images from "../../images";
 
 const CommentBlock = ({ style, user, icon, text }: any) => {
   return (
@@ -44,14 +32,14 @@ export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome)
   const [showPrivacy, setShowPrivacy] = useState(true);
 
   const tagImages: Record<string, string> = {
-    pizza: Pizza,
-    italian: Italian,
-    vegetarian: Vegetarian,
-    "stir-fry": Stirfry,
-    asian: Asian,
-    cookies: Cookies,
-    dessert: Dessert,
-    baking: Baking,
+    pizza: Images.pizza,
+    italian: Images.pasta,
+    vegetarian: Images.vegeterian,
+    "stir-fry": Images.stirFry,
+    asian: Images.azian,
+    cookies: Images.cookies,
+    dessert: Images.dessert,
+    baking: Images.baking,
   };
 
   return (
@@ -73,10 +61,10 @@ export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome)
               <p className="poppins-regular">Do you have an account? <button onClick={() => setShowLoginForm(true)}><span className="poppins-bold">Log in</span></button></p>
             </div>
             <div className={styles['hero__textblock-img']}>
-              <img src={heroImg} width="50%" alt="hero img" />
+              <img src={Images.heroImg} width="50%" alt="hero img" />
               <CommentBlock
                 user="Jon Johnson"
-                icon={userAvatar}
+                icon={Images.userAvatar}
                 text="Wow, this recipe is a flawor explosion in my mouth! very deliclous."
                 style={{
                   position: 'absolute',
@@ -85,7 +73,7 @@ export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome)
                 }} />
               <CommentBlock
                 user="Kati Milano"
-                icon={womanAvatar}
+                icon={Images.womanAvatar}
                 text="I love this site. I can find a lot of recipes"
                 style={{
                   position: 'absolute',
@@ -98,7 +86,10 @@ export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome)
         {
           showPrivacy && <div className={styles.privacy}>
             <div className={styles.privacy__info}>
-              <div className={styles['privacy__info-header']}><img src={cookies} alt="cookies" width={20} /><h3 className='heading__3'> We value your privacy</h3></div>
+              <div className={styles['privacy__info-header']}>
+                <img src={Images.cookie} alt="cookies" width={20} />
+                <h3 className='heading__3'> We value your privacy</h3>
+              </div>
               <p className="text">We use cookies to make your browsing experience sweeter! Cookies help us analyze traffic and show you personalized content. By clicking "accept all" you are giving us permission to treat you to a cookie or two. To read our full Cookie Policy.</p>
             </div>
             <div className={styles.privacy__buttons}>
@@ -109,7 +100,7 @@ export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome)
         }
       </section>
       <section>
-        <AddRecipe />
+        <AddRecipe setShowRegForm={setShowRegForm} />
       </section>
       <section className={styles.recipes}>
         <div className={styles.recipes__title}>

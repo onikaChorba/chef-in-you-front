@@ -43,7 +43,7 @@ function App() {
           <Route path='/' element={<Home recipes={recipes} tags={tags} setShowLoginForm={setShowLoginForm} setShowRegForm={setShowRegForm} />} />
           <Route path='/recipes' element={<Recipes recipes={recipes} tags={tags} />} />
           <Route path='/recipes/:id' element={<RecipeDetails />} />
-          <Route path='/add-recipe' element={<AddRecipe />} />
+          <Route path='/add-recipe' element={<AddRecipe setShowRegForm={setShowRegForm} />} />
           <Route path='/me' element={<>me</>} />
           <Route path='/blog' element={<Blog />} />
         </Routes>
