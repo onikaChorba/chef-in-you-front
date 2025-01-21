@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from './home.module.scss';
-import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/button/button";
 import TrendingRecipesCarousel from "../../components/carousel/carousel";
 import { AddRecipe } from "../addRecipe/addRecipe";
@@ -10,7 +9,6 @@ import userAvatar from '../../assets/icons/user-avatar.png'
 import womanAvatar from '../../assets/icons/woman-avatar.png'
 import { RecipeCard } from "../../components/recipe/recipeCard/recipeCard";
 import { Input } from "../../components/input/input";
-
 import Pizza from '../../assets/imgs/pizza.jpg'
 import Italian from '../../assets/imgs/pasta.jpg'
 import Vegetarian from '../../assets/imgs/vegeterian.jpg'
@@ -35,19 +33,25 @@ const CommentBlock = ({ style, user, icon, text }: any) => {
   )
 }
 
-export const Home = ({ recipes, tags }: any) => {
-  const navigate = useNavigate();
+interface IHome {
+  recipes: any,
+  tags: any,
+  setShowLoginForm: (showLoginForm: boolean) => void,
+  setShowRegForm: (showRegForm: boolean) => void
+}
+
+export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome) => {
   const [showPrivacy, setShowPrivacy] = useState(true);
 
   const tagImages: Record<string, string> = {
-    Pizza,
-    Italian,
-    Vegetarian,
-    Stirfry,
-    Asian,
-    Cookies,
-    Dessert,
-    Baking,
+    pizza: Pizza,
+    italian: Italian,
+    vegetarian: Vegetarian,
+    "stir-fry": Stirfry,
+    asian: Asian,
+    cookies: Cookies,
+    dessert: Dessert,
+    baking: Baking,
   };
 
   return (
@@ -65,8 +69,8 @@ export const Home = ({ recipes, tags }: any) => {
               <p className="poppins-medium">
                 Discover new flavors, savor beloved classics, and explore the art of cooking with us. From easy weeknight meals to gourmet creations, we bring you recipes, tips, and inspiration for every occasion. Let’s make every meal an adventure in taste!
               </p>
-              <Button text="Sign up" textStyle="" onClick={() => navigate('/registration')} />
-              <p className="poppins-regular">Do you have an account? <button onClick={() => navigate('/login')}><span className="poppins-bold">Log in</span></button></p>
+              <Button text="Sign up" textStyle="" onClick={() => setShowRegForm(true)} />
+              <p className="poppins-regular">Do you have an account? <button onClick={() => setShowLoginForm(true)}><span className="poppins-bold">Log in</span></button></p>
             </div>
             <div className={styles['hero__textblock-img']}>
               <img src={heroImg} width="50%" alt="hero img" />
@@ -136,7 +140,7 @@ export const Home = ({ recipes, tags }: any) => {
             tags && tags.items.tags.map((tag: any, index: number) => (
               <div key={index} className={styles.popularCategories__blok}>
                 <div className={styles['popularCategories__blok-img']}>
-                  <img src={tag === "stir-fry" ? tagImages['StirFry'] : tagImages[tag]} alt={tag} />
+                  <img src={tagImages[tag.toLowerCase()]} alt={tag} />
                 </div>
                 <p className={`${styles['popularCategories__blok-tag']} poppins-semibold`}>{tag}</p>
               </div>

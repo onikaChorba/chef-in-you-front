@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import styles from './header.module.scss';
 import logo from '../../assets/icons/logo.png';
@@ -8,13 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectIsAuth } from '../../redux/slices/auth';
 
 interface IHeader {
-
+  setShowLoginForm: (showLoginForm: boolean) => void;
+  setShowRegForm: (showRegForm: boolean) => void;
 }
 
-export const Header: React.FC<IHeader> = () => {
+export const Header: React.FC<IHeader> = ({ setShowLoginForm, setShowRegForm }) => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
-  const navigate = useNavigate();
   const onClickLogout = () => {
     if (window.confirm('Are you sure you want to logout?')) {
       dispatch(logout());
@@ -44,20 +43,17 @@ export const Header: React.FC<IHeader> = () => {
       {
         !isAuth ?
           <div className={styles.header__buttons}>
-            <NavLink to="/login" className={styles.link}>
-              <Button
-                text="Login in"
-                textStyle="poppins-bold"
-                buttonStyle="button-secondary"
-                onClick={() => navigate("/login")} />
-            </NavLink>
-            <NavLink to="/registration" className={styles.link}>
-              <Button
-                text="Sing up"
-                textStyle="poppins-bold"
-                onClick={() => navigate("/registration")}
-              />
-            </NavLink>
+            <Button
+              text="Login in"
+              textStyle="poppins-bold"
+              buttonStyle="button-secondary"
+              onClick={() => setShowLoginForm(true)} />
+
+            <Button
+              text="Sing up"
+              textStyle="poppins-bold"
+              onClick={() => setShowRegForm(true)}
+            />
           </div>
           :
           <div>

@@ -22,6 +22,8 @@ function App() {
 
   const { recipes, tags } = useSelector((state: RootState) => state.recipes);
   const [showSubscribeForm, setShowSubscribeForm] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showRegForm, setShowRegForm] = useState(false);
 
   useEffect(() => {
     dispatch(fetchRecipes());
@@ -36,17 +38,21 @@ function App() {
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}>
       <div className='container'>
         <img src={bgImg} className='container__img' alt='bgImg' />
-        <Header />
+        <Header setShowLoginForm={setShowLoginForm} setShowRegForm={setShowRegForm} />
         <Routes>
-          <Route path='/' element={<Home recipes={recipes} tags={tags} />} />
+          <Route path='/' element={<Home recipes={recipes} tags={tags} setShowLoginForm={setShowLoginForm} setShowRegForm={setShowRegForm} />} />
           <Route path='/recipes' element={<Recipes recipes={recipes} tags={tags} />} />
           <Route path='/recipes/:id' element={<RecipeDetails />} />
           <Route path='/add-recipe' element={<AddRecipe />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/registration' element={<Registration />} />
           <Route path='/me' element={<>me</>} />
           <Route path='/blog' element={<Blog />} />
         </Routes>
+        {
+          showLoginForm && <Login showLoginForm={showLoginForm} setShowLoginForm={setShowLoginForm} />
+        }
+        {
+          showRegForm && <Registration showRegForm={showRegForm} setShowRegForm={setShowRegForm} />
+        }
         {
           showSubscribeForm && <Subscribe showSubscribeForm={showSubscribeForm} setShowSubscribeForm={setShowSubscribeForm} />
         }

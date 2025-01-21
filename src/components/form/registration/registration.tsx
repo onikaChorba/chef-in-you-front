@@ -13,10 +13,16 @@ import signupImg from '../../../assets/imgs/singUp.jpeg';
 import userIcon from '../../../assets/icons/user-for-input.svg';
 import email from '../../../assets/icons/email.svg';
 import password from '../../../assets/icons/password.svg';
+import { Popup } from "../../popup/popup";
 interface IRegistration {
+  showRegForm: boolean;
+  setShowRegForm: (showRegForm: boolean) => void;
 }
 
-export const Registration: React.FC<IRegistration> = () => {
+export const Registration: React.FC<IRegistration> = ({
+  showRegForm,
+  setShowRegForm
+}) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -60,7 +66,7 @@ export const Registration: React.FC<IRegistration> = () => {
   };
 
   return (
-    <>
+    <Popup isOpen={showRegForm} onClose={() => setShowRegForm(false)}>
       <h2 className={`poppins-extrabold`}>Sing up</h2>
       <div className={styles.form}>
         <div className={styles['form__signup']}>
@@ -116,6 +122,6 @@ export const Registration: React.FC<IRegistration> = () => {
           </div>
         </div>
       </div>
-    </>
+    </Popup>
   );
 };
