@@ -10,6 +10,17 @@ import userAvatar from '../../assets/icons/user-avatar.png'
 import womanAvatar from '../../assets/icons/woman-avatar.png'
 import { RecipeCard } from "../../components/recipe/recipeCard/recipeCard";
 import { Input } from "../../components/input/input";
+
+import Pizza from '../../assets/imgs/pizza.jpg'
+import Italian from '../../assets/imgs/pasta.jpg'
+import Vegetarian from '../../assets/imgs/vegeterian.jpg'
+import Stirfry from '../../assets/imgs/stir-fry.jpg'
+import Asian from '../../assets/imgs/asian.png'
+import Cookies from '../../assets/imgs/cookies.png'
+import Dessert from '../../assets/imgs/dessert.jpeg'
+import Baking from '../../assets/imgs/baking.png'
+
+
 const CommentBlock = ({ style, user, icon, text }: any) => {
   return (
     <div className={styles.commentBlock} style={style}>
@@ -24,9 +35,21 @@ const CommentBlock = ({ style, user, icon, text }: any) => {
   )
 }
 
-export const Home = ({ recipes }: any) => {
+export const Home = ({ recipes, tags }: any) => {
   const navigate = useNavigate();
   const [showPrivacy, setShowPrivacy] = useState(true);
+
+  const tagImages: Record<string, string> = {
+    Pizza,
+    Italian,
+    Vegetarian,
+    Stirfry,
+    Asian,
+    Cookies,
+    Dessert,
+    Baking,
+  };
+
   return (
     <>
       <section>
@@ -101,6 +124,24 @@ export const Home = ({ recipes }: any) => {
           <p className="text">Join our newsletter, so that we rech out to you with our news and offers</p>
           <Input name="email" placeholder="Enter Your Email" />
           <Button text="Subscribe" textStyle="" />
+        </div>
+      </section>
+      <section className={styles.popularCategories}>
+        <div className={styles.popularCategories__title}>
+          <h2 className="poppins-extrabold">Popular Categories</h2>
+          <Button text="View more" textStyle="poppins-bold" buttonStyle="button-link" />
+        </div>
+        <div className={styles.popularCategories__bloks}>
+          {
+            tags && tags.items.tags.map((tag: any, index: number) => (
+              <div key={index} className={styles.popularCategories__blok}>
+                <div className={styles['popularCategories__blok-img']}>
+                  <img src={tag === "stir-fry" ? tagImages['StirFry'] : tagImages[tag]} alt={tag} />
+                </div>
+                <p className={`${styles['popularCategories__blok-tag']} poppins-semibold`}>{tag}</p>
+              </div>
+            ))
+          }
         </div>
       </section>
     </>

@@ -38,9 +38,8 @@ function App() {
         <img src={bgImg} className='container__img' alt='bgImg' />
         <Header />
         <Routes>
-          <Route path='/' element={<Home recipes={recipes} />} />
+          <Route path='/' element={<Home recipes={recipes} tags={tags} />} />
           <Route path='/recipes' element={<Recipes recipes={recipes} tags={tags} />} />
-          {/* <Route path='/recipes/tags' element={<>tags</>} /> */}
           <Route path='/recipes/:id' element={<RecipeDetails />} />
           <Route path='/add-recipe' element={<AddRecipe />} />
           <Route path='/login' element={<Login />} />
