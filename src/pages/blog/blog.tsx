@@ -1,9 +1,8 @@
 import React from "react";
 import styles from './blog.module.scss';
-import articleTop from '../../assets/imgs/article-top.png'
-import cheesecake from '../../assets/imgs/cheesecake.jpeg'
-import impact from '../../assets/imgs/impact.jpg'
+import Images from "../../images";
 import { Button } from "../../components/button/button";
+
 export const Blog = () => {
   return (
     <div className={styles.blog}>
@@ -19,14 +18,14 @@ export const Blog = () => {
           <Button className="primary" text="Read more" textStyle="" />
         </div>
         <div className={styles["article-top__img"]}>
-          <img src={articleTop} alt="food" />
+          <img src={Images.articleTop} alt="food" />
         </div>
       </div>
 
       <div className={styles.articles}>
         <div className={styles['article-block']}>
           <div className={styles["article-block__img"]}>
-            <img src={cheesecake} alt="food" />
+            <img src={Images.cheesecake} alt="food" />
           </div>
           <div className={`${styles["article-block__data"]} poppins-light`} >on September 19, 2032</div>
           <h3 className={`${styles["article-block__title"]} poppins-semibold`}>Classic New York_style Cheesecake Recipe</h3>
@@ -36,7 +35,7 @@ export const Blog = () => {
         </div>
         <div className={styles['article-block']}>
           <div className={styles["article-block__img"]}>
-            <img src={impact} alt="food" />
+            <img src={Images.impact} alt="food" />
           </div>
           <div className={`${styles["article-block__data"]} poppins-light`} >on December 25, 2024</div>
           <h3 className={`${styles["article-block__title"]} poppins-semibold`}>The Surprising Effects of Sugar on Mental Health</h3>

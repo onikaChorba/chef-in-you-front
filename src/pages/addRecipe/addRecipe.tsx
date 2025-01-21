@@ -1,18 +1,13 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import styles from './addRecipe.module.scss';
 import { selectIsAuth } from "../../redux/slices/auth";
 import { Input } from "../../components/input/input";
 import { Button } from "../../components/button/button";
-import AddRecipesImg from '../../assets/imgs/addRecipes.jpg';
-import water from '../../assets/icons/water.png';
-import cooking from '../../assets/icons/cooking.png';
-import bake from '../../assets/icons/bake.png';
-import { Popup } from "../../components/popup/popup";
 import { addRecipe } from "../../redux/slices/recipes";
-
+import { Popup } from "../../components/popup/popup";
+import Images from "../../images";
 interface RecipeData {
   title: string;
   description: string;
@@ -23,11 +18,13 @@ interface RecipeData {
   instructions: string[];
   user: string | null | string;
 }
-export const AddRecipe = () => {
+interface IAddRecipe {
+  setShowRegForm: (showRegFrom: boolean) => void;
+}
 
+export const AddRecipe = ({ setShowRegForm }: IAddRecipe) => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const [isPopupAddRecipeOpen, setIsPopupAddRecipeOpen] = useState(false);
 
   const openPopupAddRecipe = () => {
@@ -131,7 +128,7 @@ export const AddRecipe = () => {
     <div>
       <div className={styles['add-recipe']}>
         <div className={styles['add-recipe__image-container']}>
-          <img src={AddRecipesImg} alt="AddRecipesImg" className={styles['add-recipe__image']} />
+          <img src={Images.addRecipes} alt="AddRecipesImg" className={styles['add-recipe__image']} />
         </div>
         <div className={styles['add-recipe__text-container']}>
           <h2 className={styles['add-recipe__title']}>
@@ -142,12 +139,12 @@ export const AddRecipe = () => {
           </p>
 
           <div className={styles['add-recipe__icon-container']}>
-            <img src={water} alt="Icon 1" className={styles['add-recipe__icon']} />
-            <img src={cooking} alt="Icon 2" className={styles['add-recipe__icon']} />
-            <img src={bake} alt="Icon 3" className={styles['add-recipe__icon']} />
+            <img src={Images.water} alt="Icon 1" className={styles['add-recipe__icon']} />
+            <img src={Images.cooking} alt="Icon 2" className={styles['add-recipe__icon']} />
+            <img src={Images.bake} alt="Icon 3" className={styles['add-recipe__icon']} />
           </div>
           {
-            unsigned ? <Button text="Sign up for creating recipes" textStyle="poppins-semibold" onClick={() => navigate('/registration')} /> : <Button text="Add Your Recipe" textStyle="poppins-semibold" onClick={openPopupAddRecipe} />
+            unsigned ? <Button text="Sign up for creating recipes" textStyle="poppins-semibold" onClick={() => setShowRegForm && setShowRegForm(true)} /> : <Button text="Add Your Recipe" textStyle="poppins-semibold" onClick={openPopupAddRecipe} />
           }
           <div className={styles['add-recipe__testimonial']}>
             <p>“This platform helped me find amazing recipes and share my own!” - Jane D.</p>

@@ -7,13 +7,19 @@ import { AppDispatch } from "../../../redux/store";
 import { fetchLogin, selectIsAuth } from "../../../redux/slices/auth";
 import { Input } from "../../input/input";
 import { Button } from "../../button/button";
+import { Popup } from "../../popup/popup";
 import loginInImg from '../../../assets/imgs/junkfood.jpg';
 import email from '../../../assets/icons/email.svg';
 import password from '../../../assets/icons/password.svg';
 
 interface ILogin {
+  showLoginForm: boolean;
+  setShowLoginForm: (showLoginForm: boolean) => void;
 }
-export const Login: React.FC<ILogin> = () => {
+export const Login: React.FC<ILogin> = ({
+  showLoginForm,
+  setShowLoginForm
+}) => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -40,7 +46,7 @@ export const Login: React.FC<ILogin> = () => {
   };
 
   return (
-    <>
+    <Popup isOpen={showLoginForm} onClose={() => setShowLoginForm(false)} size="standard">
       <h2 className={`poppins-extrabold`}>Login</h2>
       <div className={styles.form}>
         <div className={styles['form__signup']}>
@@ -54,6 +60,6 @@ export const Login: React.FC<ILogin> = () => {
           </div>
         </div>
       </div>
-    </>
+    </Popup>
   )
 }

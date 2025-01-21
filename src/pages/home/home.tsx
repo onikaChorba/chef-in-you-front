@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import styles from './home.module.scss';
-import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/button/button";
 import TrendingRecipesCarousel from "../../components/carousel/carousel";
 import { AddRecipe } from "../addRecipe/addRecipe";
-import cookies from '../../assets/icons/cookie.png';
-import heroImg from '../../assets/imgs/hero-img.png';
-import userAvatar from '../../assets/icons/user-avatar.png'
-import womanAvatar from '../../assets/icons/woman-avatar.png'
 import { RecipeCard } from "../../components/recipe/recipeCard/recipeCard";
 import { Input } from "../../components/input/input";
+import Images from "../../images";
+
 const CommentBlock = ({ style, user, icon, text }: any) => {
   return (
     <div className={styles.commentBlock} style={style}>
@@ -24,9 +21,27 @@ const CommentBlock = ({ style, user, icon, text }: any) => {
   )
 }
 
-export const Home = ({ recipes }: any) => {
-  const navigate = useNavigate();
+interface IHome {
+  recipes: any,
+  tags: any,
+  setShowLoginForm: (showLoginForm: boolean) => void,
+  setShowRegForm: (showRegForm: boolean) => void
+}
+
+export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome) => {
   const [showPrivacy, setShowPrivacy] = useState(true);
+
+  const tagImages: Record<string, string> = {
+    pizza: Images.pizza,
+    italian: Images.pasta,
+    vegetarian: Images.vegeterian,
+    "stir-fry": Images.stirFry,
+    asian: Images.azian,
+    cookies: Images.cookies,
+    dessert: Images.dessert,
+    baking: Images.baking,
+  };
+
   return (
     <>
       <section>
@@ -42,14 +57,14 @@ export const Home = ({ recipes }: any) => {
               <p className="poppins-medium">
                 Discover new flavors, savor beloved classics, and explore the art of cooking with us. From easy weeknight meals to gourmet creations, we bring you recipes, tips, and inspiration for every occasion. Let’s make every meal an adventure in taste!
               </p>
-              <Button text="Sign up" textStyle="" onClick={() => navigate('/registration')} />
-              <p className="poppins-regular">Do you have an account? <button onClick={() => navigate('/login')}><span className="poppins-bold">Log in</span></button></p>
+              <Button text="Sign up" textStyle="" onClick={() => setShowRegForm(true)} />
+              <p className="poppins-regular">Do you have an account? <button onClick={() => setShowLoginForm(true)}><span className="poppins-bold">Log in</span></button></p>
             </div>
             <div className={styles['hero__textblock-img']}>
-              <img src={heroImg} width="50%" alt="hero img" />
+              <img src={Images.heroImg} width="50%" alt="hero img" />
               <CommentBlock
                 user="Jon Johnson"
-                icon={userAvatar}
+                icon={Images.userAvatar}
                 text="Wow, this recipe is a flawor explosion in my mouth! very deliclous."
                 style={{
                   position: 'absolute',
@@ -58,7 +73,7 @@ export const Home = ({ recipes }: any) => {
                 }} />
               <CommentBlock
                 user="Kati Milano"
-                icon={womanAvatar}
+                icon={Images.womanAvatar}
                 text="I love this site. I can find a lot of recipes"
                 style={{
                   position: 'absolute',
@@ -71,7 +86,10 @@ export const Home = ({ recipes }: any) => {
         {
           showPrivacy && <div className={styles.privacy}>
             <div className={styles.privacy__info}>
-              <div className={styles['privacy__info-header']}><img src={cookies} alt="cookies" width={20} /><h3 className='heading__3'> We value your privacy</h3></div>
+              <div className={styles['privacy__info-header']}>
+                <img src={Images.cookie} alt="cookies" width={20} />
+                <h3 className='heading__3'> We value your privacy</h3>
+              </div>
               <p className="text">We use cookies to make your browsing experience sweeter! Cookies help us analyze traffic and show you personalized content. By clicking "accept all" you are giving us permission to treat you to a cookie or two. To read our full Cookie Policy.</p>
             </div>
             <div className={styles.privacy__buttons}>
@@ -82,7 +100,7 @@ export const Home = ({ recipes }: any) => {
         }
       </section>
       <section>
-        <AddRecipe />
+        <AddRecipe setShowRegForm={setShowRegForm} />
       </section>
       <section className={styles.recipes}>
         <div className={styles.recipes__title}>
@@ -101,6 +119,24 @@ export const Home = ({ recipes }: any) => {
           <p className="text">Join our newsletter, so that we rech out to you with our news and offers</p>
           <Input name="email" placeholder="Enter Your Email" />
           <Button text="Subscribe" textStyle="" />
+        </div>
+      </section>
+      <section className={styles.popularCategories}>
+        <div className={styles.popularCategories__title}>
+          <h2 className="poppins-extrabold">Popular Categories</h2>
+          <Button text="View more" textStyle="poppins-bold" buttonStyle="button-link" />
+        </div>
+        <div className={styles.popularCategories__bloks}>
+          {
+            tags && tags.items.tags.map((tag: any, index: number) => (
+              <div key={index} className={styles.popularCategories__blok}>
+                <div className={styles['popularCategories__blok-img']}>
+                  <img src={tagImages[tag.toLowerCase()]} alt={tag} />
+                </div>
+                <p className={`${styles['popularCategories__blok-tag']} poppins-semibold`}>{tag}</p>
+              </div>
+            ))
+          }
         </div>
       </section>
     </>
