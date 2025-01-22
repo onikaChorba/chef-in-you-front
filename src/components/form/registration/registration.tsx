@@ -77,6 +77,7 @@ export const Registration: React.FC<IRegistration> = ({
             <h2 className={`${styles['form__title']} poppins-bold`}>Want to join our Family</h2>
             <form onSubmit={handleSubmit(onSubmit)} className={styles['form__block']}>
               <Input
+                id="full name"
                 placeholder="Full name"
                 {...register('fullName', { required: 'Write full name' })}
                 type="text"
@@ -86,6 +87,7 @@ export const Registration: React.FC<IRegistration> = ({
                 <p className={styles['form__error']}>{errors.fullName.message}</p>
               )}
               <Input
+                id="emailReg"
                 placeholder="Email"
                 {...register('email', { required: 'Write email' })}
                 type="email"
@@ -95,6 +97,7 @@ export const Registration: React.FC<IRegistration> = ({
                 <p className={styles['form__error']}>{errors.email.message}</p>
               )}
               <Input
+                id="passwordReg"
                 placeholder="Password"
                 {...register('password', { required: 'Write password please' })}
                 icon={password}

@@ -117,7 +117,7 @@ export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome)
         <div className={styles.letsStayInTouch__block}>
           <h2 className="poppins-bold">Let`s Stay In Touch!</h2>
           <p className="text">Join our newsletter, so that we rech out to you with our news and offers</p>
-          <Input name="email" placeholder="Enter Your Email" />
+          <Input name="email" placeholder="Enter Your Email" id="emailSubscribe" />
           <Button text="Subscribe" textStyle="" />
         </div>
       </section>

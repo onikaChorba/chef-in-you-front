@@ -158,8 +158,8 @@ export const AddRecipe = ({ setShowRegForm }: IAddRecipe) => {
         title="Lets create and share your favourite recipe"
         size="large">
         <div className={styles['add-recipe__form-container']}>
-          <Input value={recipeTitle} onChange={(e) => setRecipeTitle(e.target.value)} name="recipe-title" label="Recipe title:" placeholder="Enter your recipe title" type="text" />
-          <Input value={recipeDescription} onChange={(e) => setRecipeDescription(e.target.value)} name="recipe-description" label="Description:" placeholder="Introduce your recipe" type="text" />
+          <Input value={recipeTitle} onChange={(e) => setRecipeTitle(e.target.value)} name="recipe-title" id="recipe-title" label="Recipe title:" placeholder="Enter your recipe title" type="text" />
+          <Input value={recipeDescription} onChange={(e) => setRecipeDescription(e.target.value)} name="recipe-description" id="recipe-description" label="Description:" placeholder="Introduce your recipe" type="text" />
 
           <div className={styles['add-recipe__ingredients-section']}>
             <p className={styles['add-recipe__ingredients-title']}>Ingredients:</p>
@@ -167,6 +167,7 @@ export const AddRecipe = ({ setShowRegForm }: IAddRecipe) => {
               <div key={index} className={styles['add-recipe__ingredient']}>
                 <div className={styles['add-recipe__input-container']}>
                   <Input
+                    id={`ingredient-${index}`}
                     type="text"
                     name={`ingredient-${index}`}
                     placeholder="Add ingredient"
@@ -200,6 +201,7 @@ export const AddRecipe = ({ setShowRegForm }: IAddRecipe) => {
                 <div className={styles['add-recipe__input-container']}>
                   <Input
                     type="text"
+                    id={`instruction-${index}`}
                     name={`instruction-${index}`}
                     placeholder="Write instruction"
                     value={instruction.value || ""}
@@ -219,9 +221,9 @@ export const AddRecipe = ({ setShowRegForm }: IAddRecipe) => {
             </button>
           </div>
 
-          <Input value={recipeServings} onChange={(e) => setRecipeServings(e.target.value)} name="recipe-servings" label="Servings:" placeholder="How many portions does this recipe make?" type="number" />
-          <Input value={recipeTime} onChange={(e) => setRecipeTime(e.target.value)} name="recipe-time" label="Cooking time:" placeholder="How long does it take to prepare this recipe?" type="number" />
-          <Input value={recipeTags} onChange={(e) => setRecipeTags(e.target.value)} name="recipe-tag" label="Tags" placeholder="Tags" type="text" />
+          <Input value={recipeServings} onChange={(e) => setRecipeServings(e.target.value)} name="recipe-servings" id="recipe-servings" label="Servings:" placeholder="How many portions does this recipe make?" type="number" />
+          <Input value={recipeTime} onChange={(e) => setRecipeTime(e.target.value)} name="recipe-time" id="recipe-time" label="Cooking time:" placeholder="How long does it take to prepare this recipe?" type="number" />
+          <Input value={recipeTags} onChange={(e) => setRecipeTags(e.target.value)} name="recipe-tag" id="recipe-tag" label="Tags" placeholder="Tags" type="text" />
 
           <Button
             text="Create New Recipe"

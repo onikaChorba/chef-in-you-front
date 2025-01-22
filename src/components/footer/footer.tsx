@@ -107,7 +107,7 @@ function Footer({
         <div className={styles.footer__form}>
           <div className={styles['footer__form-title']}> News letter</div>
           <p className={styles['footer__form-description']}> Subscribe to our news letter to get more free tip</p>
-          <Input name="email" placeholder="Enter Your Email" />
+          <Input name="email" placeholder="Enter Your Email" id="emailToSubscribe" />
           <Button text="Subscribe" textStyle="poppins-semibold" buttonStyle="button-secondary" onClick={() => setShowSubscribeForm(!showSubscribeForm)} />
         </div>
       </div>
