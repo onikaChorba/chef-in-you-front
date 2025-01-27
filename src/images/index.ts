@@ -1,7 +1,7 @@
 const Images = {
   arrowDown: require('../assets/icons/arrow-down.svg'),
   bake: require('../assets/icons/bake.png'),
-  cookie: require('../assets/icons/cookie.png'),
+  cookie: require('../assets/icons/cookie.svg'),
   cooking: require('../assets/icons/cooking.png'),
   email: require('../assets/icons/email.svg'),
   google: require('../assets/icons/google.svg'),

@@ -3,7 +3,7 @@
 .recipeDetails {
   padding: 20px;
   max-width: 1540px;
-  margin: 0 auto;
+  margin: 60px auto;
   background-color: var(--white);
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -17,33 +17,28 @@
 
   &__meta {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
+    gap: 40px;
     font-size: 14px;
     color: var(--grey-dark);
     margin: 10px 0;
-
-    &__user,
-    &__date,
-    &__views {
-      margin-right: 10px;
-    }
   }
-
+  &__user,
+  &__date,
+  &__views,
   &__saveButton,
   &__shareButton {
-    background-color: var(--primary);
-    color: var(--white);
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: var(--primary-dark);
-    }
+    font-size: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  &__saveButton,
+  &__shareButton {
+    color: var(--primary);
   }
 
   &__divider {
@@ -83,26 +78,28 @@
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    align-items: center;
     margin-bottom: 15px;
-
-    &__tag {
-      background-color: var(--grey-light);
-      color: var(--black-light);
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-    }
   }
-
+  &__tag {
+    border-radius: 5px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid var(--primary);
+  }
   &__ingredients,
   &__instructions {
     margin-top: 10px;
     font-size: 14px;
     color: var(--grey-dark);
-
-    &__ingredient,
-    &__instruction {
-      margin-bottom: 5px;
-    }
+  }
+  &__ingredient,
+  &__instruction {
+    list-style: none;
+    margin-bottom: 5px;
   }
 }

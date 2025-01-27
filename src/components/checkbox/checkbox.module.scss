@@ -1,0 +1,9 @@
+@import "../../theme/index.scss";
+.checkbox {
+  &__label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+}

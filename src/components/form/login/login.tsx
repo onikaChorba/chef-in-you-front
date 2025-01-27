@@ -51,8 +51,8 @@ export const Login: React.FC<ILogin> = ({
       <div className={styles.form}>
         <div className={styles['form__signup']}>
           <form onSubmit={handleSubmit(onSubmit)} className={`${styles['form__signup-form']} form-block`} >
-            <Input placeholder="login" {...register('email', { required: 'Write email please' })} type="email" icon={email} />{errors.email?.message}
-            <Input placeholder="password" {...register('password', { required: 'Write password please' })} type="string" icon={password} />{errors.password?.message}
+            <Input placeholder="login" {...register('email', { required: 'Write email please' })} type="email" icon={email} id="emailLoginIn" />{errors.email?.message}
+            <Input placeholder="password" {...register('password', { required: 'Write password please' })} type="string" icon={password} id="passwordLoginIn" />{errors.password?.message}
             <Button text="Login In" textStyle="poppins-bold" />
           </form>
           <div className={styles['form__signup-image']}>

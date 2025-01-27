@@ -31,8 +31,11 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchAuthMe())
-  })
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(fetchAuthMe());
+    }
+  }, [dispatch]);
 
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ''}>
