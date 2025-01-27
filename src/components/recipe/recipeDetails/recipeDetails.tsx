@@ -7,6 +7,9 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styles from './recipeDetails.module.scss';
 import { TRecipe } from "../../../types/index";
+import { Checkbox } from "../../checkbox/checkbox";
+import checkbox from '../../../assets/icons/checkbox.svg'
+import checkboxCheck from '../../../assets/icons/checkbox-check.svg'
 import userAvatar from '../../../assets/icons/user2.svg'
 import calendar from '../../../assets/icons/calendar.svg'
 import views from '../../../assets/icons/view2.svg'
@@ -79,13 +82,14 @@ export const RecipeDetails = () => {
         </div>
         <div className={styles.recipeDetails__info}>
           <div className={styles.recipeDetails__timeServings}>
-            <span>Time: {recipe?.time}</span>
-            <span>Servings: {recipe?.servings}</span>
+            <p className="poppins-medium">Time: <span>{recipe?.time ? recipe?.time : '45 min'}</span></p>
+            <p className="poppins-medium">Servings: <span>{recipe?.servings}</span></p>
           </div>
           <div className={styles.recipeDetails__tags}>
+            <span className="poppins-bold-italic"> #tags:</span>
             {Array.isArray(recipe?.tags) ? (
               recipe?.tags.map((tag: string, index: number) => (
-                <span key={index} className={styles.recipeDetails__tag}>{tag}</span>
+                <span key={index} className={`${styles.recipeDetails__tag} poppins-medium`}>{tag}</span>
               ))
             ) : (
               <span className={styles.recipeDetails__tag}>{recipe?.tags}</span>
@@ -94,13 +98,29 @@ export const RecipeDetails = () => {
           <h3>Ingredients:</h3>
           <ul className={styles.recipeDetails__ingredients}>
             {recipe?.ingredients.map((ingr: string, index: number) => (
-              <li key={index} className={styles.recipeDetails__ingredient}>{ingr}</li>
+              <li key={index} className={styles.recipeDetails__ingredient}>
+                <Checkbox
+                  // checked={isChecked}
+                  // onChange={setIsChecked}
+                  checkedImage={checkboxCheck}
+                  uncheckedImage={checkbox}
+                  label={ingr}
+                />
+              </li>
             ))}
           </ul>
           <h3>Instruction:</h3>
           <ol className={styles.recipeDetails__instructions}>
             {recipe?.instructions.map((instr: string, index: number) => (
-              <li key={index} className={styles.recipeDetails__instruction}>{instr}</li>
+              <li key={index} className={styles.recipeDetails__instruction}>
+                <Checkbox
+                  // checked={isChecked}
+                  // onChange={setIsChecked}
+                  checkedImage={checkboxCheck}
+                  uncheckedImage={checkbox}
+                  label={instr}
+                />
+              </li>
             ))}
           </ol>
         </div>
