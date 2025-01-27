@@ -11,7 +11,6 @@ export const Checkbox = ({ checked = false, onChange, checkedImage, uncheckedIma
           width={20}
           src={checked ? checkedImage : uncheckedImage}
           alt={checked ? "Checked" : "Unchecked"}
-          className="w-full h-full object-contain"
         />
       </div>
       {label && <p className='text'>{label}</p>}

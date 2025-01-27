@@ -8,15 +8,7 @@ import { useSelector } from "react-redux";
 import styles from './recipeDetails.module.scss';
 import { TRecipe } from "../../../types/index";
 import { Checkbox } from "../../checkbox/checkbox";
-import checkbox from '../../../assets/icons/checkbox.svg'
-import checkboxCheck from '../../../assets/icons/checkbox-check.svg'
-import userAvatar from '../../../assets/icons/user2.svg'
-import calendar from '../../../assets/icons/calendar.svg'
-import views from '../../../assets/icons/view2.svg'
-import save from '../../../assets/icons/save.svg'
-import share from '../../../assets/icons/share.svg'
-import remove from '../../../assets/icons/remove.svg'
-import edit from '../../../assets/icons/edit.svg'
+import Images from "../../../images";
 
 export const RecipeDetails = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -57,27 +49,27 @@ export const RecipeDetails = () => {
       <div className={styles.recipeDetails__meta}>
         {
           !!recipe?.user?.fullName && <div className={styles.recipeDetails__user}>
-            <img src={userAvatar} alt="user" height={22} />
+            <img src={Images.user2.default} alt="user" height={22} />
             <p>{recipe?.user?.fullName}</p>
           </div>
         }
         {
           !!recipe?.createdAt && <div className={styles.recipeDetails__date}>
-            <img src={calendar} alt="calendar" height={20} />
+            <img src={Images.calendar.default} alt="calendar" height={20} />
             <p>{recipe?.createdAt && new Date(recipe.createdAt).toLocaleDateString()}
             </p>
           </div>
         }
         <div className={styles.recipeDetails__views}>
-          <img src={views} alt="views" height={15} />
+          <img src={Images.views.default} alt="views" height={15} />
           <p >{String(recipe?.viewsCount)}</p></div>
         <button className={styles.recipeDetails__saveButton}>
-          <img src={save} alt="save" width={30} /><p>Save</p>
+          <img src={Images.save.default} alt="save" width={30} /><p>Save</p>
         </button>
-        <button className={styles.recipeDetails__shareButton}><img src={share} alt="share" height={22} />Share</button>
+        <button className={styles.recipeDetails__shareButton}><img src={Images.share.default} alt="share" height={22} />Share</button>
 
-        {isRecipeOwner && <button onClick={handleDelete}><img src={remove} alt="share" height={25} /><p>Remove recipe</p></button>}
-        {isRecipeOwner && <button><img src={edit} alt="share" height={22} /><p>Edit recipe</p></button>}
+        {isRecipeOwner && <button onClick={handleDelete}><img src={Images.remove.default} alt="share" height={25} /><p>Remove recipe</p></button>}
+        {isRecipeOwner && <button><img src={Images.edit.default} alt="share" height={22} /><p>Edit recipe</p></button>}
       </div>
       <hr className={styles.recipeDetails__divider} />
       <div className={styles.recipeDetails__content}>
@@ -106,8 +98,8 @@ export const RecipeDetails = () => {
                 <Checkbox
                   // checked={isChecked}
                   // onChange={setIsChecked}
-                  checkedImage={checkboxCheck}
-                  uncheckedImage={checkbox}
+                  checkedImage={Images.checkbox.default}
+                  uncheckedImage={Images.box.default}
                   label={ingr}
                 />
               </li>
@@ -120,8 +112,8 @@ export const RecipeDetails = () => {
                 <Checkbox
                   // checked={isChecked}
                   // onChange={setIsChecked}
-                  checkedImage={checkboxCheck}
-                  uncheckedImage={checkbox}
+                  checkedImage={Images.checkbox.default}
+                  uncheckedImage={Images.box.default}
                   label={instr}
                 />
               </li>
