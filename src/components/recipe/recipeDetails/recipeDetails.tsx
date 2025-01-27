@@ -1,12 +1,17 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
+import axios from '../../../axios';
 import { fetchDeleteRecipe } from "../../../redux/slices/recipes";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styles from './recipeDetails.module.scss';
 import { TRecipe } from "../../../types/index";
-import axios from '../../../axios';
+import userAvatar from '../../../assets/icons/user2.svg'
+import calendar from '../../../assets/icons/calendar.svg'
+import views from '../../../assets/icons/view2.svg'
+import save from '../../../assets/icons/save.svg'
+import share from '../../../assets/icons/share.svg'
 
 export const RecipeDetails = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -45,11 +50,24 @@ export const RecipeDetails = () => {
     <div className={styles.recipeDetails}>
       <h2 className={styles.recipeDetails__title}>{recipe?.title}</h2>
       <div className={styles.recipeDetails__meta}>
-        <span className={styles.recipeDetails__user}>{recipe?.user?.fullName}</span>
-        <span className={styles.recipeDetails__date}>{recipe?.createdAt}</span>
-        <span className={styles.recipeDetails__views}>Views: {String(recipe?.viewsCount)}</span>
-        <button className={styles.recipeDetails__saveButton}>Save</button>
-        <button className={styles.recipeDetails__shareButton}>Share</button>
+        {
+          !!recipe?.user?.fullName && <div className={styles.recipeDetails__user}>
+            <img src={userAvatar} alt="user" height={22} />
+            <p>{recipe?.user?.fullName}</p>
+          </div>
+        }
+        {
+          !!recipe?.createdAt && <div className={styles.recipeDetails__date}>
+            <img src={calendar} alt="calendar" height={20} />
+            <p>{recipe?.createdAt && new Date(recipe.createdAt).toLocaleDateString()}
+            </p>
+          </div>
+        }
+        <div className={styles.recipeDetails__views}>
+          <img src={views} alt="views" height={15} />
+          <p >{String(recipe?.viewsCount)}</p></div>
+        <button className={styles.recipeDetails__saveButton}><img src={save} alt="save" width={30} /><p>Save</p></button>
+        <button className={styles.recipeDetails__shareButton}><img src={share} alt="share" height={22} />Share</button>
 
         {isRecipeOwner && <button onClick={handleDelete}>Remove recipe</button>}
         {isRecipeOwner && <button>Edit recipe</button>}

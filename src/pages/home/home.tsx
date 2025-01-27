@@ -5,6 +5,7 @@ import TrendingRecipesCarousel from "../../components/carousel/carousel";
 import { AddRecipe } from "../addRecipe/addRecipe";
 import { RecipeCard } from "../../components/recipe/recipeCard/recipeCard";
 import { Input } from "../../components/input/input";
+import cookie from '../../assets/icons/cookie.svg'
 import Images from "../../images";
 
 const CommentBlock = ({ style, user, icon, text }: any) => {
@@ -87,7 +88,7 @@ export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome)
           showPrivacy && <div className={styles.privacy}>
             <div className={styles.privacy__info}>
               <div className={styles['privacy__info-header']}>
-                <img src={Images.cookie} alt="cookies" width={20} />
+                <img src={cookie} alt="cookies" width={20} />
                 <h3 className='heading__3'> We value your privacy</h3>
               </div>
               <p className="text">We use cookies to make your browsing experience sweeter! Cookies help us analyze traffic and show you personalized content. By clicking "accept all" you are giving us permission to treat you to a cookie or two. To read our full Cookie Policy.</p>
