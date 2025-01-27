@@ -15,6 +15,8 @@ import calendar from '../../../assets/icons/calendar.svg'
 import views from '../../../assets/icons/view2.svg'
 import save from '../../../assets/icons/save.svg'
 import share from '../../../assets/icons/share.svg'
+import remove from '../../../assets/icons/remove.svg'
+import edit from '../../../assets/icons/edit.svg'
 
 export const RecipeDetails = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -69,11 +71,13 @@ export const RecipeDetails = () => {
         <div className={styles.recipeDetails__views}>
           <img src={views} alt="views" height={15} />
           <p >{String(recipe?.viewsCount)}</p></div>
-        <button className={styles.recipeDetails__saveButton}><img src={save} alt="save" width={30} /><p>Save</p></button>
+        <button className={styles.recipeDetails__saveButton}>
+          <img src={save} alt="save" width={30} /><p>Save</p>
+        </button>
         <button className={styles.recipeDetails__shareButton}><img src={share} alt="share" height={22} />Share</button>
 
-        {isRecipeOwner && <button onClick={handleDelete}>Remove recipe</button>}
-        {isRecipeOwner && <button>Edit recipe</button>}
+        {isRecipeOwner && <button onClick={handleDelete}><img src={remove} alt="share" height={25} /><p>Remove recipe</p></button>}
+        {isRecipeOwner && <button><img src={edit} alt="share" height={22} /><p>Edit recipe</p></button>}
       </div>
       <hr className={styles.recipeDetails__divider} />
       <div className={styles.recipeDetails__content}>

@@ -33,6 +33,8 @@ const Images = {
   singUp: require('../assets/imgs/singUp.jpeg'),
   stirFry: require('../assets/imgs/stir-fry.jpg'),
   subscribe: require('../assets/imgs/subscribe.jpg'),
-  vegeterian: require('../assets/imgs/vegeterian.jpg')
+  vegeterian: require('../assets/imgs/vegeterian.jpg'),
+  edit: require('../assets/icons/edit.svg'),
+  delete: require('../assets/icons/remove.svg')
 }
 export default Images;

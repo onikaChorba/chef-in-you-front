@@ -36,10 +36,6 @@
     align-items: center;
     gap: 10px;
   }
-  &__saveButton,
-  &__shareButton {
-    color: var(--primary);
-  }
 
   &__divider {
     border: 1px solid var(--grey-light);
