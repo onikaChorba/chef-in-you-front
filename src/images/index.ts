@@ -42,6 +42,8 @@ const Images = {
   share: require('../assets/icons/share.svg'),
   remove: require('../assets/icons/remove.svg'),
   box: require('../assets/icons/checkbox.svg'),
-  checkbox: require('../assets/icons/checkbox-check.svg')
+  checkbox: require('../assets/icons/checkbox-check.svg'),
+  menu: require('../assets/icons/menu.svg').default,
+  close: require('../assets/icons/close.svg').default,
 }
 export default Images;

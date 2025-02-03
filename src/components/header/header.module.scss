@@ -1,12 +1,12 @@
+@import "../../theme/index.scss";
 .header {
-  display: flex;
-  justify-content: space-between;
+  @include flex-space-between;
   align-items: center;
+  height: 43px;
   padding: 15px 15px 0px 0px;
   &__logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 200px;
+    @include flex-space-between;
     gap: 5px;
     font-size: 28px;
     line-height: 28px;
@@ -27,10 +27,39 @@
       }
     }
   }
-  &__nav {
+  &__navbar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100px;
+    height: 100vh;
+    background: white;
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    flex: 1;
+    gap: 20px;
+    padding: 20px;
+
+    @include screen-tb {
+      position: static;
+      width: 100%;
+      height: auto;
+      box-shadow: none;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: center;
+      // @include flex-space-between;
+      // align-items: center;
+    }
+
+    &.open {
+      right: 0;
+    }
+  }
+  &__nav {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     a {
@@ -46,13 +75,51 @@
         color: var(--primary);
       }
     }
+
+    &.open {
+      display: flex;
+      flex-direction: column;
+      flex: 0.5;
+      gap: 15px;
+    }
   }
   &__buttons {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
+
+    @include screen-tb {
+      display: flex;
+      gap: 20px;
+    }
   }
 }
 
 .link {
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .header__nav {
+    display: block;
+  }
+
+  .menuIcon {
+    display: block;
+  }
+}
+.closeIcon {
+  position: absolute;
+  top: 20px;
+  right: 100px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: rotate(180deg);
+  }
+  @include screen-tb {
+    display: none;
+  }
 }
