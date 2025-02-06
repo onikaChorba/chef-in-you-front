@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from './recipeCard.module.scss';
 import { Button } from "../../button/button";
-import view from '../../../assets/icons/view.svg';
-import user from '../../../assets/icons/user.svg';
-import save from '../../../assets/icons/save.svg';
+import Images from "../../../images";
 
 export const RecipeCard = ({ recipe }: any) => {
   return (
@@ -13,7 +11,7 @@ export const RecipeCard = ({ recipe }: any) => {
         className={styles.recipeCard__saveButton}
       // onClick={() => handleSaveRecipe(recipe._id)}
       >
-        <img src={save} alt="save" width={40} />
+        <img src={Images.save.default} alt="save" width={40} />
       </button>
       <div className={styles.recipeCard__image}>
         <img src={recipe.imageUrl} alt={recipe.name} />
@@ -27,12 +25,12 @@ export const RecipeCard = ({ recipe }: any) => {
               background: '#f0f0f0', display: 'flex',
               justifyContent: 'center', alignItems: 'center', borderRadius: '15px'
             }}>
-              <img src={user} alt="user" width={20} />
+              <img src={Images.user.default} alt="user" width={20} />
             </div>
             {recipe?.user?.fullName}
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '5px', color: '#999999' }}>
-            {recipe.viewsCount} <img src={view} alt="view" width={25} /></div>
+            {recipe.viewsCount} <img src={Images.view.default} alt="view" width={25} /></div>
         </div>
         <Link to={`/recipes/${recipe._id}`} className={styles.recipeCard__link}>
           <Button textStyle="poppins-bold" buttonStyle="button-link" text="View Recipe" />

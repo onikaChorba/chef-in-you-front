@@ -9,11 +9,8 @@ import { fetchRegister } from "../../../redux/slices/auth";
 import { RegisterParams } from "../../../types";
 import { Input } from "../../input/input";
 import { Button } from "../../button/button";
-import signupImg from '../../../assets/imgs/singUp.jpeg';
-import userIcon from '../../../assets/icons/user-for-input.svg';
-import email from '../../../assets/icons/email.svg';
-import password from '../../../assets/icons/password.svg';
 import { Popup } from "../../popup/popup";
+import Images from "../../../images";
 interface IRegistration {
   showRegForm: boolean;
   setShowRegForm: (showRegForm: boolean) => void;
@@ -71,7 +68,7 @@ export const Registration: React.FC<IRegistration> = ({
       <div className={styles.form}>
         <div className={styles['form__signup']}>
           <div className={styles['form__signup-image']}>
-            <img src={signupImg} alt="Sign up" />
+            <img src={Images.singUp} alt="Sign up" />
           </div>
           <div className={styles['form__signup-form']}>
             <h2 className={`${styles['form__title']} poppins-bold`}>Want to join our Family</h2>
@@ -81,7 +78,7 @@ export const Registration: React.FC<IRegistration> = ({
                 placeholder="Full name"
                 {...register('fullName', { required: 'Write full name' })}
                 type="text"
-                icon={userIcon}
+                icon={Images.userForInput.fefault}
               />
               {errors.fullName?.message && (
                 <p className={styles['form__error']}>{errors.fullName.message}</p>
@@ -91,7 +88,7 @@ export const Registration: React.FC<IRegistration> = ({
                 placeholder="Email"
                 {...register('email', { required: 'Write email' })}
                 type="email"
-                icon={email}
+                icon={Images.email.default}
               />
               {errors.email?.message && (
                 <p className={styles['form__error']}>{errors.email.message}</p>
@@ -100,7 +97,7 @@ export const Registration: React.FC<IRegistration> = ({
                 id="passwordReg"
                 placeholder="Password"
                 {...register('password', { required: 'Write password please' })}
-                icon={password}
+                icon={Images.password.default}
               />
               {errors.password?.message && (
                 <p className={styles['form__error']}>{errors.password.message}</p>
@@ -121,7 +118,6 @@ export const Registration: React.FC<IRegistration> = ({
                 onError={() => console.error('Google login failed')}
               />
             </div>
-
           </div>
         </div>
       </div>

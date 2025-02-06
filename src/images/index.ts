@@ -14,6 +14,7 @@ const Images = {
   userAvatar: require('../assets/icons/user-avatar.png'),
   userForInput: require('../assets/icons/user-for-input.svg'),
   user: require('../assets/icons/user.svg'),
+  user2: require('../assets/icons/user2.svg'),
   view: require('../assets/icons/view.svg'),
   water: require('../assets/icons/water.png'),
   womanAvatar: require('../assets/icons/woman-avatar.png'),
@@ -33,6 +34,16 @@ const Images = {
   singUp: require('../assets/imgs/singUp.jpeg'),
   stirFry: require('../assets/imgs/stir-fry.jpg'),
   subscribe: require('../assets/imgs/subscribe.jpg'),
-  vegeterian: require('../assets/imgs/vegeterian.jpg')
+  vegeterian: require('../assets/imgs/vegeterian.jpg'),
+  edit: require('../assets/icons/edit.svg'),
+  delete: require('../assets/icons/remove.svg'),
+  calendar: require('../assets/icons/calendar.svg'),
+  views: require('../assets/icons/view2.svg'),
+  share: require('../assets/icons/share.svg'),
+  remove: require('../assets/icons/remove.svg'),
+  box: require('../assets/icons/checkbox.svg'),
+  checkbox: require('../assets/icons/checkbox-check.svg'),
+  menu: require('../assets/icons/menu.svg').default,
+  close: require('../assets/icons/close.svg').default,
 }
 export default Images;
