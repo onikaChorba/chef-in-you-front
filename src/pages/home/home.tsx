@@ -62,7 +62,7 @@ export const Home = ({ recipes, tags, setShowLoginForm, setShowRegForm }: IHome)
               <p className="poppins-regular">Do you have an account? <button onClick={() => setShowLoginForm(true)}><span className="poppins-bold">Log in</span></button></p>
             </div>
             <div className={styles['hero__textblock-img']}>
-              <img src={Images.heroImg} width="50%" alt="hero img" />
+              <img src={Images.heroImg} alt="hero img" className={styles.heroImg} />
               <CommentBlock
                 user="Jon Johnson"
                 icon={Images.userAvatar}

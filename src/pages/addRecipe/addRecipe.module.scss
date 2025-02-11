@@ -2,8 +2,12 @@
 .add-recipe {
   padding-top: 60px;
   padding-bottom: 60px;
-  @include flex-space-between;
+  @include flex-column-center;
   gap: 20px;
+  @include screen-tb {
+    flex-direction: initial;
+    @include flex-space-between;
+  }
   &__form-container {
     display: flex;
     flex-direction: column;
