@@ -2,18 +2,29 @@
 .form {
   background-color: var(--white);
   &__signup {
-    @include flex-space-between;
+    @include flex-column-center;
+
     align-items: center;
     gap: 20px;
+    @include screen-lp {
+      flex-direction: initial;
+      @include flex-space-between;
+    }
   }
   &__signup-image {
-    width: 60%;
+    width: 100%;
+    @include screen-lp {
+      width: 60%;
+    }
     img {
       width: 100%;
     }
   }
   &__signup-form {
-    width: 40%;
+    width: 100%;
+    @include screen-lp {
+      width: 40%;
+    }
   }
   &__title {
     font-size: 24px;
