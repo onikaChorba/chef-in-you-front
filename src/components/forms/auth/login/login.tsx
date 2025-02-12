@@ -3,17 +3,17 @@ import styles from '../form.module.scss';
 import { useForm } from 'react-hook-form';
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../../redux/store";
-import { fetchLogin, selectIsAuth } from "../../../redux/slices/auth";
-import { Input } from "../../input/input";
-import { Button } from "../../button/button";
-import { Popup } from "../../popup/popup";
-import Images from "../../../images";
-
+import { AppDispatch } from "../../../../redux/store";
+import { fetchLogin, selectIsAuth } from "../../../../redux/slices/auth";
+import { Input } from "../../../input/input";
+import { Button } from "../../../button/button";
+import { Popup } from "../../../popup/popup";
+import Images from "../../../../images";
 interface ILogin {
   showLoginForm: boolean;
   setShowLoginForm: (showLoginForm: boolean) => void;
 }
+
 export const Login: React.FC<ILogin> = ({
   showLoginForm,
   setShowLoginForm
@@ -46,14 +46,14 @@ export const Login: React.FC<ILogin> = ({
   return (
     <Popup isOpen={showLoginForm} onClose={() => setShowLoginForm(false)} size="standard">
       <h2 className={`poppins-extrabold`}>Login</h2>
-      <div className={styles.form}>
-        <div className={styles['form__signup']}>
-          <form onSubmit={handleSubmit(onSubmit)} className={`${styles['form__signup-form']} form-block`} >
+      <div className={styles.formContainer}>
+        <div className={styles.formContent}>
+          <form onSubmit={handleSubmit(onSubmit)} className={`${styles.form} form-block`} >
             <Input placeholder="login" {...register('email', { required: 'Write email please' })} type="email" icon={Images.email.default} id="emailLoginIn" />{errors.email?.message}
             <Input placeholder="password" {...register('password', { required: 'Write password please' })} type="string" icon={Images.password.default} id="passwordLoginIn" />{errors.password?.message}
             <Button text="Login In" textStyle="poppins-bold" />
           </form>
-          <div className={styles['form__signup-image']}>
+          <div className={styles.formImage}>
             <img src={Images.junkfood} alt="food" />
           </div>
         </div>

@@ -4,13 +4,13 @@ import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import styles from '../form.module.scss';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../redux/store";
-import { fetchRegister } from "../../../redux/slices/auth";
-import { RegisterParams } from "../../../types";
-import { Input } from "../../input/input";
-import { Button } from "../../button/button";
-import { Popup } from "../../popup/popup";
-import Images from "../../../images";
+import { AppDispatch } from "../../../../redux/store";
+import { fetchRegister } from "../../../../redux/slices/auth";
+import { RegisterParams } from "../../../../types";
+import { Input } from "../../../input/input";
+import { Button } from "../../../button/button";
+import { Popup } from "../../../popup/popup";
+import Images from "../../../../images";
 interface IRegistration {
   showRegForm: boolean;
   setShowRegForm: (showRegForm: boolean) => void;
@@ -65,14 +65,14 @@ export const Registration: React.FC<IRegistration> = ({
   return (
     <Popup isOpen={showRegForm} onClose={() => setShowRegForm(false)}>
       <h2 className={`poppins-extrabold`}>Sing up</h2>
-      <div className={styles.form}>
-        <div className={styles['form__signup']}>
-          <div className={styles['form__signup-image']}>
+      <div className={styles.formContainer}>
+        <div className={styles.formContent}>
+          <div className={styles.formImage}>
             <img src={Images.singUp} alt="Sign up" />
           </div>
-          <div className={styles['form__signup-form']}>
-            <h2 className={`${styles['form__title']} poppins-bold`}>Want to join our Family</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className={styles['form__block']}>
+          <div className={styles.form}>
+            <h2 className={`poppins-extrabold`}>Want to join our Family</h2>
+            <form onSubmit={handleSubmit(onSubmit)} className="form-block">
               <Input
                 id="full name"
                 placeholder="Full name"
@@ -109,8 +109,8 @@ export const Registration: React.FC<IRegistration> = ({
                 className={styles['form__button']}
               />
             </form>
-            <div className={styles['form__google']}>
-              <p className={`${styles['form__subtitle']} poppins-bold`}>
+            <div className={styles.formGoogle}>
+              <p className='poppins-semibold'>
                 Or Sign Up with Google
               </p>
               <GoogleLogin

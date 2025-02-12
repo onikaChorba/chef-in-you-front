@@ -1,0 +1,39 @@
+@import "../../../theme/index.scss";
+.formContainer {
+  background-color: var(--white);
+}
+.formContent {
+  @include flex-column-center;
+
+  align-items: center;
+  gap: 20px;
+  @include screen-lp {
+    flex-direction: initial;
+    @include flex-space-between;
+  }
+}
+.form {
+  width: 100%;
+  @include screen-lp {
+    width: 40%;
+  }
+}
+.formText {
+  text-align: center;
+  color: var(--mid-grey);
+}
+.formImage {
+  width: 100%;
+  @include screen-lp {
+    width: 60%;
+  }
+  img {
+    width: 100%;
+  }
+}
+.formGoogle {
+  padding-top: 20px;
+  @include flex-column-center;
+  gap: 20px;
+  text-align: center;
+}

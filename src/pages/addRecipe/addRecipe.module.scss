@@ -8,11 +8,7 @@
     flex-direction: initial;
     @include flex-space-between;
   }
-  &__form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+
   &__image-container {
     flex: 1;
     max-width: 100%;
@@ -73,97 +69,5 @@
     font-style: italic;
     color: var(--dark-gray);
     margin-top: 20px;
-  }
-
-  &__ingredients-section,
-  &__instructions-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  &__ingredients-title,
-  &__instructions-title {
-    font-size: 16px;
-    font-weight: bold;
-    color: #b55d51;
-  }
-
-  &__ingredient,
-  &__instruction {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  &__instruction-label {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--mid-grey);
-    margin-right: 10px;
-    text-align: left;
-  }
-  &__input-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
-
-  &__remove-button {
-    background-color: var(--white);
-    color: var(--primary-dark);
-    border: 1px solid var(--primary-grey);
-    border-radius: 4px;
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease, color 0.3s ease,
-      border-color 0.3s ease;
-
-    &:hover {
-      background-color: var(--primary-light);
-      color: var(--primary-dark);
-      border-color: var(--primary);
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-  &__add-button {
-    width: fit-content;
-    background-color: var(--primary-light);
-    color: var(--primary-dark);
-    border: 1px solid var(--primary);
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease,
-      border-color 0.3s ease;
-
-    &:hover {
-      background-color: var(--primary);
-      color: var(--white);
-      border-color: var(--primary-dark);
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(181, 93, 81, 0.5);
-    }
-
-    &:active {
-      background-color: var(--primary-dark);
-      color: var(--white);
-      border-color: var(--primary-grey);
-    }
   }
 }

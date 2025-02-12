@@ -16,7 +16,7 @@
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
   }
 
-  &__saveButton {
+  &__save-button {
     @include flex-column-center;
     position: absolute;
     top: 25px;
@@ -48,6 +48,29 @@
     font-weight: bold;
     color: var(--primary-dark);
     text-align: center;
+  }
+  &__meta {
+    @include flex-space-between;
+    align-items: center;
+  }
+  &__user {
+    @include flex-space-between;
+    align-items: center;
+    gap: 10px;
+    color: var(--dark-grey);
+  }
+  &__user-avatar {
+    width: 30px;
+    height: 30px;
+    @include flex-center;
+    border-radius: 15px;
+    background: var(--light-grey);
+  }
+  &__views {
+    @include flex-space-between;
+    align-items: center;
+    gap: 5px;
+    color: var(--mid-grey);
   }
   &__description {
     font-size: 14px;

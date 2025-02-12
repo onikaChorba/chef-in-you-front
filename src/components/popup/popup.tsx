@@ -32,7 +32,6 @@ export const Popup: React.FC<IPopup> = ({ title, isOpen = false, onClose, size =
     };
   }, [modalContentRef, onClose]);
 
-
   return (
     <>
       {
