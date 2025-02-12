@@ -4,7 +4,12 @@ import { Input } from "../input/input";
 import { Button } from "../button/button";
 import Images from "../../images";
 
-function Links(props: any) {
+interface ILink {
+  title: string;
+  li: React.ReactNode[];
+}
+
+function Links(props: ILink) {
   const [isAddList, setIsAddList] = useState(false);
   const onClickArrowList = () => {
     setIsAddList(!isAddList);

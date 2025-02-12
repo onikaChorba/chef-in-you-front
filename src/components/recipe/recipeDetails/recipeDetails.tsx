@@ -12,7 +12,7 @@ import Images from "../../../images";
 
 export const RecipeDetails = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [recipe, setRecipe] = useState<TRecipe | null | any>(null);
+  const [recipe, setRecipe] = useState<TRecipe | null>(null);
   const userData = useSelector((state: any) => state.auth.data);
   const { id } = useParams();
 
@@ -48,10 +48,17 @@ export const RecipeDetails = () => {
       <h2 className={styles.recipeDetails__title}>{recipe?.title}</h2>
       <div className={styles.recipeDetails__meta}>
         {
-          !!recipe?.user?.fullName && <div className={styles.recipeDetails__user}>
-            <img src={Images.user2.default} alt="user" height={22} />
-            <p>{recipe?.user?.fullName}</p>
-          </div>
+          typeof recipe?.user === "object" && recipe?.user?.fullName ? (
+            <div className={styles.recipeDetails__user}>
+              <img src={Images.user2.default} alt="user" height={22} />
+              <p>{recipe.user.fullName}</p>
+            </div>
+          ) : (
+            <div className={styles.recipeDetails__user}>
+              <img src={Images.user2.default} alt="user" height={22} />
+              <p>Unknown User</p>
+            </div>
+          )
         }
         {
           !!recipe?.createdAt && <div className={styles.recipeDetails__date}>

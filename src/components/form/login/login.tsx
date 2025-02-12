@@ -9,11 +9,11 @@ import { Input } from "../../input/input";
 import { Button } from "../../button/button";
 import { Popup } from "../../popup/popup";
 import Images from "../../../images";
-
 interface ILogin {
   showLoginForm: boolean;
   setShowLoginForm: (showLoginForm: boolean) => void;
 }
+
 export const Login: React.FC<ILogin> = ({
   showLoginForm,
   setShowLoginForm

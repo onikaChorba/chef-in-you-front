@@ -1,11 +1,19 @@
 import React from "react";
-import styles from './checkbox.module.scss'
+import styles from './checkbox.module.scss';
 
-export const Checkbox = ({ checked = false, onChange, checkedImage, uncheckedImage, label }: any) => {
+interface ICheckbox {
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
+  checkedImage: string;
+  uncheckedImage: string;
+  label?: string;
+}
+
+export const Checkbox: React.FC<ICheckbox> = ({ checked = false, onChange, checkedImage, uncheckedImage, label }) => {
   return (
     <label className={styles.checkbox__label}>
       <div
-        onClick={() => onChange(!checked)}
+        onClick={() => onChange && onChange(!checked)}
       >
         <img
           width={20}
