@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../pages/addRecipe/addRecipe.module.scss';
+import styles from './popupRecipe.module.scss';
 import { Input } from '../../input/input';
 import { Button } from '../../button/button';
 import { Popup } from '../../popup/popup';
@@ -29,6 +29,7 @@ interface IPopupRecipe {
   setRecipeTags: (value: string) => void;
   handleSubmit: () => void;
 }
+
 export const PopupRecipe = ({
   isPopupAddRecipeOpen,
   closePopupAddRecipe,
@@ -50,7 +51,8 @@ export const PopupRecipe = ({
   setRecipeTime,
   recipeTags,
   setRecipeTags,
-  handleSubmit }: IPopupRecipe) => {
+  handleSubmit
+}: IPopupRecipe) => {
 
   return (
     <Popup
@@ -58,15 +60,32 @@ export const PopupRecipe = ({
       onClose={closePopupAddRecipe}
       title="Lets create and share your favourite recipe"
       size="large">
-      <div className={styles['add-recipe__form-container']}>
-        <Input value={recipeTitle} onChange={(e) => setRecipeTitle(e.target.value)} name="recipe-title" id="recipe-title" label="Recipe title:" placeholder="Enter your recipe title" type="text" />
-        <Input value={recipeDescription} onChange={(e) => setRecipeDescription(e.target.value)} name="recipe-description" id="recipe-description" label="Description:" placeholder="Introduce your recipe" type="text" />
 
-        <div className={styles['add-recipe__ingredients-section']}>
-          <p className={styles['add-recipe__ingredients-title']}>Ingredients:</p>
+      <div className={styles['popup-recipe']}>
+        <Input
+          value={recipeTitle}
+          onChange={(e) => setRecipeTitle(e.target.value)}
+          name="recipe-title"
+          id="recipe-title"
+          label="Recipe title:"
+          placeholder="Enter your recipe title"
+          type="text"
+        />
+        <Input
+          value={recipeDescription}
+          onChange={(e) => setRecipeDescription(e.target.value)}
+          name="recipe-description"
+          id="recipe-description"
+          label="Description:"
+          placeholder="Introduce your recipe"
+          type="text"
+        />
+
+        <div className={styles['popup-recipe__ingredients']}>
+          <p className={styles['popup-recipe__ingredients-title']}>Ingredients:</p>
           {ingredients.map((ingredient: any, index: number) => (
-            <div key={index} className={styles['add-recipe__ingredient']}>
-              <div className={styles['add-recipe__input-container']}>
+            <div key={index} className={styles['popup-recipe__ingredient']}>
+              <div className={styles['popup-recipe__input-container']}>
                 <Input
                   id={`ingredient-${index}`}
                   type="text"
@@ -78,7 +97,7 @@ export const PopupRecipe = ({
                 <button
                   type="button"
                   onClick={() => removeIngredient(index)}
-                  className={styles['add-recipe__remove-button']}>
+                  className={styles['popup-recipe__remove-button']}>
                   x
                 </button>
               </div>
@@ -87,19 +106,19 @@ export const PopupRecipe = ({
           <button
             type="button"
             onClick={addNewIngridientInput}
-            className={styles['add-recipe__add-button']}>
+            className={styles['popup-recipe__add-button']}>
             Add Another Ingredient
           </button>
         </div>
 
-        <div className={styles['add-recipe__instructions-section']}>
-          <p className={styles['add-recipe__instructions-title']}>Instructions:</p>
+        <div className={styles['popup-recipe__instructions']}>
+          <p className={styles['popup-recipe__instructions-title']}>Instructions:</p>
           {instructions.map((instruction: any, index: number) => (
-            <div key={index} className={styles['add-recipe__instruction']}>
-              <label htmlFor={`instruction-${index}`} className={styles['add-recipe__instruction-label']}>
+            <div key={index} className={styles['popup-recipe__instruction']}>
+              <label htmlFor={`instruction-${index}`} className={styles['popup-recipe__instruction-label']}>
                 Step {index + 1}:
               </label>
-              <div className={styles['add-recipe__input-container']}>
+              <div className={styles['popup-recipe__input-container']}>
                 <Input
                   type="text"
                   id={`instruction-${index}`}
@@ -108,7 +127,7 @@ export const PopupRecipe = ({
                   value={instruction.value || ""}
                   onChange={(e) => handleChangeInstruction(e, index)}
                 />
-                <button type="button" onClick={() => removeInstruction(index)} className={styles['add-recipe__remove-button']}>
+                <button type="button" onClick={() => removeInstruction(index)} className={styles['popup-recipe__remove-button']}>
                   x
                 </button>
               </div>
@@ -117,19 +136,44 @@ export const PopupRecipe = ({
           <button
             type="button"
             onClick={addNewInstructionInput}
-            className={styles['add-recipe__add-button']}>
+            className={styles['popup-recipe__add-button']}>
             Add Another Step
           </button>
         </div>
 
-        <Input value={recipeServings} onChange={(e) => setRecipeServings(e.target.value)} name="recipe-servings" id="recipe-servings" label="Servings:" placeholder="How many portions does this recipe make?" type="number" />
-        <Input value={recipeTime} onChange={(e) => setRecipeTime(e.target.value)} name="recipe-time" id="recipe-time" label="Cooking time:" placeholder="How long does it take to prepare this recipe?" type="number" />
-        <Input value={recipeTags} onChange={(e) => setRecipeTags(e.target.value)} name="recipe-tag" id="recipe-tag" label="Tags" placeholder="Tags" type="text" />
+        <Input
+          value={recipeServings}
+          onChange={(e) => setRecipeServings(e.target.value)}
+          name="recipe-servings"
+          id="recipe-servings"
+          label="Servings:"
+          placeholder="How many portions does this recipe make?"
+          type="number"
+        />
+        <Input
+          value={recipeTime}
+          onChange={(e) => setRecipeTime(e.target.value)}
+          name="recipe-time"
+          id="recipe-time"
+          label="Cooking time:"
+          placeholder="How long does it take to prepare this recipe?"
+          type="number"
+        />
+        <Input
+          value={recipeTags}
+          onChange={(e) => setRecipeTags(e.target.value)}
+          name="recipe-tag"
+          id="recipe-tag"
+          label="Tags"
+          placeholder="Tags"
+          type="text"
+        />
 
         <Button
           text="Create New Recipe"
-          textStyle="poppins-bold" onClick={handleSubmit} />
+          textStyle="poppins-bold"
+          onClick={handleSubmit} />
       </div>
     </Popup>
-  )
-} 
+  );
+};

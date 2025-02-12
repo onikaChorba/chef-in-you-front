@@ -6,15 +6,15 @@ import { AppDispatch, RootState } from "./redux/store";
 import { fetchRecipes, fetchTags } from "./redux/slices/recipes";
 import { Header } from './components/header/header';
 import { Home } from './pages/home/home';
-import { Registration } from './components/form/registration/registration';
-import { Login } from './components/form/login/login';
+import { Registration } from './components/forms/auth/registration/registration';
+import { Login } from './components/forms/auth/login/login';
 import { RecipeDetails } from './components/recipe/recipeDetails/recipeDetails';
 import { AddRecipe } from './pages/addRecipe/addRecipe';
 import { fetchAuthMe } from './redux/slices/auth';
 import { Recipes } from './pages/recipes/recipes';
 import { Blog } from './pages/blog/blog'
 import Footer from './components/footer/footer';
-import { Subscribe } from './components/form/subscribe/subscribe';
+import { Subscribe } from './components/forms/auth/subscribe/subscribe';
 import bgImg from './assets/imgs/bg.svg';
 
 function App() {

@@ -6,7 +6,7 @@ import { selectIsAuth } from "../../redux/slices/auth";
 import { Button } from "../../components/button/button";
 import { addRecipe } from "../../redux/slices/recipes";
 import Images from "../../images";
-import { PopupRecipe } from "../../components/form/recipe/popupRecipe";
+import { PopupRecipe } from "../../components/forms/recipe/popupRecipe";
 interface RecipeData {
   title: string;
   description: string;
